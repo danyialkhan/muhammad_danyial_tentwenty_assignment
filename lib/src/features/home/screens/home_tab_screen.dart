@@ -63,14 +63,20 @@ class _HomeTabScreenContentState extends State<HomeTabScreenContent> {
         inactiveIcon: SvgPicture.asset(AssetPaths.dashboardIconPath, color: ColorConstants.inactiveIconColor),
       ),
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(AssetPaths.watchIconPath, color: ColorConstants.primaryAppColor),
-        title: (LocaleKeys.watch.tr()),
-        inactiveColorPrimary: ColorConstants.inactiveIconColor,
-        activeColorPrimary: ColorConstants.primaryAppColor,
-        textStyle: context.getBodyText1TextStyle(fontSize: 10.sp),
-        iconSize: 18.h,
-        inactiveIcon: SvgPicture.asset(AssetPaths.watchIconPath, color: ColorConstants.inactiveIconColor),
-      ),
+          icon: SvgPicture.asset(AssetPaths.watchIconPath, color: ColorConstants.primaryAppColor),
+          title: (LocaleKeys.watch.tr()),
+          inactiveColorPrimary: ColorConstants.inactiveIconColor,
+          activeColorPrimary: ColorConstants.primaryAppColor,
+          textStyle: context.getBodyText1TextStyle(fontSize: 10.sp),
+          iconSize: 18.h,
+          inactiveIcon: SvgPicture.asset(AssetPaths.watchIconPath, color: ColorConstants.inactiveIconColor),
+          routeAndNavigatorSettings: RouteAndNavigatorSettings(
+            initialRoute: '/',
+            routes: {
+              '/watch': (context) => Container(),
+              '/search': (context) => Container(),
+            },
+          )),
       PersistentBottomNavBarItem(
         icon: SvgPicture.asset(AssetPaths.mediaLibraryIconPath, color: ColorConstants.primaryAppColor),
         title: (LocaleKeys.media_library.tr()),

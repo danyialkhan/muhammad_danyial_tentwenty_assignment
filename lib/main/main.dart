@@ -22,6 +22,9 @@ void main() async {
 
   await dotenv.load(fileName: 'env/.env_develop');
 
+  url = dotenv.env["url"] ?? '';
+  apiKey = dotenv.env["api_key"] ?? '';
+
   await di.init();
 
   isAndroid = Platform.isAndroid;

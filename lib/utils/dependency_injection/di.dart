@@ -6,6 +6,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/services/datasources/remot
 import 'package:muhammad_danyial_tentwenty_assignment/services/repository/repositiry_impl.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/services/repository/repository.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/home/bloc/bloc.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/usecases/get_upcoming_movies_list.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/globals.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/network/network_info.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/network/network_info_imp.dart';
@@ -29,9 +30,11 @@ void registerExternalTrovesDependencies() {
   sl.registerLazySingleton<Logger>(() => Logger(filter: ShowAllLogsFilter()));
 }
 
-
 void registerRepository() {
-  sl.registerLazySingleton<Repository>(() => RepositoryImpl(remoteDataSource: sl()));
+  sl.registerLazySingleton<Repository>(() => RepositoryImpl(
+        remoteDataSource: sl(),
+        networkInfo: sl(),
+      ));
 }
 
 void registerDataSources() {
@@ -43,7 +46,7 @@ void registerBlocs() {
 }
 
 void registerUseCases() {
-
+  sl.registerLazySingleton<GetUpComingMoviesList>(() => GetUpComingMoviesList(sl()));
 }
 
 class ShowAllLogsFilter extends LogFilter {

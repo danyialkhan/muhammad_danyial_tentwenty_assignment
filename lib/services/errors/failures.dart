@@ -51,3 +51,24 @@ class DioDefaultFailure extends Failure {
   @override
   List<Object?> get props => [message];
 }
+
+class MovieServiceUnavailableFailure extends Failure {
+  const MovieServiceUnavailableFailure({required String message}) : super(message);
+
+  @override
+  List<Object?> get props => [message];
+}
+
+class NetworkFailure extends Failure {
+  const NetworkFailure({required String message}) : super(message);
+
+  @override
+  List<Object?> get props => [message];
+}
+
+class ServerFailure extends Failure {
+  const ServerFailure(String message) : super(message);
+
+  @override
+  List<Object?> get props => [message];
+}
