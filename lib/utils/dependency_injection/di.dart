@@ -5,6 +5,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/services/datasources/remot
 import 'package:muhammad_danyial_tentwenty_assignment/services/datasources/remote_datasource/remote_datasource_impl.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/services/repository/repositiry_impl.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/services/repository/repository.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/home/bloc/bloc.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/globals.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/network/network_info.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/network/network_info_imp.dart';
@@ -38,7 +39,7 @@ void registerDataSources() {
 }
 
 void registerBlocs() {
-
+  sl.registerLazySingleton<HomeTabBloc>(() => HomeTabBloc());
 }
 
 void registerUseCases() {

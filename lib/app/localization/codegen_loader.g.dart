@@ -15,7 +15,10 @@ class CodegenLoader extends AssetLoader{
   }
 
   static const Map<String,dynamic> en = {
-  "watch": "Watch"
+  "watch": "Watch",
+  "dashboard": "Dashboard",
+  "media_library": "Media Library",
+  "more": "More"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en};
 }
