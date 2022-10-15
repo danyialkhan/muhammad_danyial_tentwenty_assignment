@@ -24,6 +24,7 @@ void main() async {
 
   url = dotenv.env["url"] ?? '';
   apiKey = dotenv.env["api_key"] ?? '';
+  imageUrl = dotenv.env["imageUrl"] ?? '';
 
   await di.init();
 

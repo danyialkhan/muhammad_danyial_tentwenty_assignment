@@ -9,6 +9,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/useca
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/home/bloc/bloc.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_details.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/usecases/get_upcoming_movies_list.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/search_movies/usecases/search_movie.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/globals.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/network/network_info.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/network/network_info_imp.dart';
@@ -51,6 +52,7 @@ void registerUseCases() {
   sl.registerLazySingleton<GetUpComingMoviesList>(() => GetUpComingMoviesList(sl()));
   sl.registerLazySingleton<GetMovieDetails>(() => GetMovieDetails(sl()));
   sl.registerLazySingleton<GetMovieGenre>(() => GetMovieGenre(sl()));
+  sl.registerLazySingleton<SearchMovies>(() => SearchMovies(sl()));
 }
 
 class ShowAllLogsFilter extends LogFilter {

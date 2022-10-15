@@ -8,6 +8,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/services/repository/reposi
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/usecases/get_generes.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_details.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/usecases/get_upcoming_movies_list.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/search_movies/usecases/search_movie.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/network/network_info.dart';
 
 class RepositoryImpl extends Repository {
@@ -21,7 +22,7 @@ class RepositoryImpl extends Repository {
         _networkInfo = networkInfo;
 
   @override
-  Future<Either<Failure, UpComingMovies>> getUpComingMovies(GetUpComingMoviesListParams params) async {
+  Future<Either<Failure, MoviesList>> getUpComingMovies(GetUpComingMoviesListParams params) async {
     if (!await _networkInfo.isConnected) {
       return Left(NetworkFailure(message: LocaleKeys.no_internet.tr()));
     }
@@ -59,6 +60,22 @@ class RepositoryImpl extends Repository {
     }
     try {
       return Right(await _remoteDataSource.getGenres());
+    } on Failure catch (e) {
+      return Left(e);
+    } on DioError catch (_) {
+      return Left(ServerFailure(LocaleKeys.something_went_wrong.tr()));
+    } catch (e) {
+      return Left(ServerFailure(e.toString()));
+    }
+  }
+
+  @override
+  Future<Either<Failure, MoviesList>> searchMovie(SearchMoviesParams params) async {
+    if (!await _networkInfo.isConnected) {
+      return Left(NetworkFailure(message: LocaleKeys.no_internet.tr()));
+    }
+    try {
+      return Right(await _remoteDataSource.searchMovie(params));
     } on Failure catch (e) {
       return Left(e);
     } on DioError catch (_) {

@@ -6,6 +6,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/services/datasources/remot
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/usecases/get_generes.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_details.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/usecases/get_upcoming_movies_list.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/search_movies/usecases/search_movie.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/string%20constants.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/globals.dart';
 
@@ -20,7 +21,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
         _logger = logger;
 
   @override
-  Future<UpComingMovies> getUpComingMovies(GetUpComingMoviesListParams params) async {
+  Future<MoviesList> getUpComingMovies(GetUpComingMoviesListParams params) async {
     final queryParams = {
       'api_key': apiKey,
       'language': params.language,
@@ -32,7 +33,7 @@ class RemoteDataSourceImpl extends RemoteDataSource {
     _logger.i("[RemoteDataSourceImpl | getUpComingMovies] :: $response");
 
     if (response.data != null) {
-      return UpComingMovies.fromJson(response.data);
+      return MoviesList.fromJson(response.data);
     }
 
     throw AppStrings.SOMETHING_WENT_WRONG.tr();
@@ -63,10 +64,28 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
     final response = await _dio.onGet(api: APIPaths.onGetGenre, queryParameters: queryParams);
 
-    _logger.i("[RemoteDataSourceImpl | getMovieDetails] :: $response");
+    _logger.i("[RemoteDataSourceImpl | getGenres] :: $response");
 
     if (response.data != null) {
       return Genres.fromJson(response.data);
+    }
+
+    throw AppStrings.SOMETHING_WENT_WRONG.tr();
+  }
+
+  @override
+  Future<MoviesList> searchMovie(SearchMoviesParams params) async {
+    final queryParams = {
+      'api_key': apiKey,
+      'query': params.query
+    };
+
+    final response = await _dio.onGet(api: APIPaths.onSearchMovie, queryParameters: queryParams);
+
+    _logger.i("[RemoteDataSourceImpl | searchMovie] :: $response");
+
+    if (response.data != null) {
+      return MoviesList.fromJson(response.data);
     }
 
     throw AppStrings.SOMETHING_WENT_WRONG.tr();

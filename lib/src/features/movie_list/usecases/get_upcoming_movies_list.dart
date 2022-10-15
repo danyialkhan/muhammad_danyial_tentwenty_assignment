@@ -6,13 +6,13 @@ import 'package:muhammad_danyial_tentwenty_assignment/services/usecases/usecase.
 
 /// This use case will gets the list of all upcoming moves
 /// Input: [GetUpComingMoviesListParams] contains api key, page no, language.
-/// Output: If successful returns [UpComingMovies] List of upcoming [Movie] and other meta data.
+/// Output: If successful returns [MoviesList] List of upcoming [Movie] and other meta data.
 /// If unsuccessful returns [Failure]
-class GetUpComingMoviesList extends UseCase<UpComingMovies, GetUpComingMoviesListParams> {
+class GetUpComingMoviesList extends UseCase<MoviesList, GetUpComingMoviesListParams> {
   final Repository repository;
   GetUpComingMoviesList(this.repository);
   @override
-  Future<Either<Failure, UpComingMovies>> call(GetUpComingMoviesListParams params) {
+  Future<Either<Failure, MoviesList>> call(GetUpComingMoviesListParams params) {
     return repository.getUpComingMovies(params);
   }
 }
@@ -27,8 +27,8 @@ class GetUpComingMoviesListParams extends Equatable {
   List<Object?> get props => [page, language];
 }
 
-class UpComingMovies extends Equatable {
-  const UpComingMovies({
+class MoviesList extends Equatable {
+  const MoviesList({
     required this.dates,
     required this.page,
     required this.results,
@@ -42,7 +42,7 @@ class UpComingMovies extends Equatable {
   final int totalPages;
   final int totalResults;
 
-  factory UpComingMovies.fromJson(Map<String, dynamic> json) => UpComingMovies(
+  factory MoviesList.fromJson(Map<String, dynamic> json) => MoviesList(
         dates: Dates.fromJson(json["dates"]),
         page: json["page"],
         results: List<Movie>.from(json["results"].map((x) => Movie.fromJson(x))),

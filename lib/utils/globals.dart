@@ -6,3 +6,4 @@ GlobalKey<NavigatorState> navigatorKeyGlobal = GlobalKey();
 bool isAndroid = false;
 String url = '';
 String apiKey = '';
+String imageUrl = '';
