@@ -58,7 +58,7 @@ void registerDataSources() {
 void registerBlocs() {
   sl.registerLazySingleton<HomeTabBloc>(() => HomeTabBloc());
   sl.registerLazySingleton<UpComingMoviesBloc>(() => UpComingMoviesBloc(getUpComingMoviesList: sl()));
-  sl.registerLazySingleton<GenreBloc>(() => GenreBloc(getMovieGenre: sl()));
+  sl.registerLazySingleton<GenreBloc>(() => GenreBloc(getMovieGenre: sl(), searchMovies: sl()));
 }
 
 void registerUseCases() {

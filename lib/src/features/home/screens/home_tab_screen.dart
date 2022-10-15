@@ -8,7 +8,9 @@ import 'package:muhammad_danyial_tentwenty_assignment/app/localization/locale_ke
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/common_widgets/comming_soon.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/screens/genres_screen.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/home/bloc/bloc.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/home/bottom_tab_routes.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/screens/movie_list_screen.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/search_movies/screens/movie_search_screen.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/color_constants.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/text_styles.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/globals.dart';
@@ -75,8 +77,8 @@ class _HomeTabScreenContentState extends State<HomeTabScreenContent> {
           routeAndNavigatorSettings: RouteAndNavigatorSettings(
             initialRoute: '/',
             routes: {
-              '/genreScreen': (context) => const GenreScreen(),
-              '/search': (context) => Container(),
+              WatchTabRoutes.genreScreen: (context) => const GenreScreen(),
+              WatchTabRoutes.searchScreen: (context) => const MovieSearchScreen(),
             },
           )),
       PersistentBottomNavBarItem(

@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
@@ -5,6 +6,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/app/localization/locale_keys.g.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/common_widgets/custom_app_bar.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/home/bottom_tab_routes.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/bloc/upcomming_movies_bloc.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/color_constants.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/text_styles.dart';
@@ -52,7 +54,7 @@ class _MovieListScreenContentState extends State<MovieListScreenContent> {
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
-          onTapSearch: () => context.pushNamed(route: '/genreScreen'),
+          onTapSearch: () => context.pushNamed(route: WatchTabRoutes.genreScreen),
         ),
         backgroundColor: ColorConstants.secondaryAppGreyColor,
         body: BlocConsumer<UpComingMoviesBloc, UpComingMoviesState>(
@@ -119,8 +121,10 @@ class _MovieListScreenContentState extends State<MovieListScreenContent> {
                                     child: Container(
                                       padding: EdgeInsets.all(5.h),
                                       decoration: BoxDecoration(color: ColorConstants.secondaryAppColor.withOpacity(0.4)),
-                                      child: Text(
+                                      child: AutoSizeText(
                                         state.results[index].title,
+                                        maxLines: 2,
+                                        maxFontSize: 18,
                                         style: context.getBodyText1TextStyle(
                                           fontWeight: FontWeight.w500,
                                           color: ColorConstants.primaryAppColor,

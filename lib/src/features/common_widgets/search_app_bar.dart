@@ -29,6 +29,7 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
         alignment: Alignment.center,
         child: TextField(
           controller: controller,
+          autofocus: true,
           decoration: InputDecoration(
             border: InputBorder.none,
             icon: Container(

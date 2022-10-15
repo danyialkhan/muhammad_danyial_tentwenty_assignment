@@ -1,5 +1,6 @@
 import 'package:dio/dio.dart' as dio;
 import 'package:easy_localization/easy_localization.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/app/localization/locale_keys.g.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/services/errors/failures.dart';
 
 abstract class DioErrorHandler {
@@ -19,6 +20,8 @@ class DioErrorHandlerImpl extends DioErrorHandler {
         return DioContentNotFound(message: 'content_not_found'.tr());
       case 401:
         return DioUnAuthorized(message: 'un_authorized_request'.tr());
+      case 422:
+        return SearchResultsNotFound(message: LocaleKeys.results_not_found.tr());
       case 503:
         return MovieServiceUnavailableFailure(message: 'un_authorized_request'.tr());
       default:

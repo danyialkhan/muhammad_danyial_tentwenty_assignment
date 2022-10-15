@@ -45,6 +45,13 @@ class DioUnAuthorized extends Failure {
   List<Object?> get props => [message];
 }
 
+class SearchResultsNotFound extends Failure {
+  const SearchResultsNotFound({required String message}) : super(message);
+
+  @override
+  List<Object?> get props => [message];
+}
+
 class DioDefaultFailure extends Failure {
   const DioDefaultFailure({required String message}) : super(message);
 
