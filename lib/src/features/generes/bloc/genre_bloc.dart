@@ -9,6 +9,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/useca
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/home/bottom_tab_routes.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/usecases/get_upcoming_movies_list.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/search_movies/usecases/search_movie.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/utils/message_helper/snachbar_helper.dart';
 
 part 'genre_event.dart';
 part 'genre_state.dart';
@@ -52,13 +53,16 @@ class GenreBloc extends Bloc<GenreEvent, GenreState> {
 
     if (resultEither.isLeft()) {
       final failure = handleFailure(resultEither);
+      if(failure is! SearchResultsNotFound) {
+        SnackbarHelper.show(message: failure.message);
+      }
       emit(state.copyWith(searchingMovies: false, failureEither: left(failure)));
       return;
     }
 
     final response = resultEither.getOrElse(() => MoviesList.empty());
 
-    state.copyWith(searchingMovies: true, failureEither: right(unit), movies: response.results);
+    emit(state.copyWith(searchingMovies: true, failureEither: right(unit), movies: [...response.results]));
   }
 
   FutureOr<void> _onTapCross(OnTapCrossEvent event, Emitter<GenreState> emit) async {

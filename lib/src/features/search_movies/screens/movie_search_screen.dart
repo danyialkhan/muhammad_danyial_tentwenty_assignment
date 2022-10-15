@@ -5,6 +5,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/app/localization/locale_keys.g.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/common_widgets/search_app_bar.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/bloc/genre_bloc.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/search_movies/widgets/movie_list_widget.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/globals.dart';
 
 class MovieSearchScreen extends StatelessWidget {
@@ -38,17 +39,35 @@ class _MovieSearchScreenContentState extends State<MovieSearchScreenContent> {
           onChanged: (val) => context.read<GenreBloc>().add(OnSearchChangedEvent(val)),
           controller: context.read<GenreBloc>().controller,
         ),
-        body: Container(
-          margin: EdgeInsets.symmetric(vertical: 30.h, horizontal: 21.w),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Text(LocaleKeys.top_results.tr()),
-              SizedBox(height: 10.h),
-              const Divider(),
-            ],
-          ),
+        body: BlocBuilder<GenreBloc, GenreState>(
+          builder: (context, state) {
+            return Container(
+              margin: EdgeInsets.symmetric(vertical: 30.h, horizontal: 21.w),
+              child: CustomScrollView(
+                slivers: [
+                  SliverToBoxAdapter(
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.start,
+                      crossAxisAlignment: CrossAxisAlignment.center,
+                      children: [
+                        Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            LocaleKeys.top_results.tr(),
+                          ),
+                        ),
+                        SizedBox(height: 10.h),
+                        const Divider(),
+                      ],
+                    ),
+                  ),
+                  MovieListWidget(
+                    movies: state.movies,
+                  ),
+                ],
+              ),
+            );
+          },
         ),
       ),
     );

@@ -43,9 +43,9 @@ class MoviesList extends Equatable {
   final int totalResults;
 
   factory MoviesList.fromJson(Map<String, dynamic> json) => MoviesList(
-        dates: Dates.fromJson(json["dates"]),
+        dates: json["dates"] == null ? Dates.empty() : Dates.fromJson(json["dates"]),
         page: json["page"],
-        results: List<Movie>.from(json["results"].map((x) => Movie.fromJson(x))),
+        results: json["results"] == null ? [] : List<Movie>.from(json["results"].map((x) => Movie.fromJson(x))),
         totalPages: json["total_pages"],
         totalResults: json["total_results"],
       );
@@ -118,7 +118,7 @@ class Movie extends Equatable {
   factory Movie.fromJson(Map<String, dynamic> json) => Movie(
         adult: json["adult"],
         backdropPath: json["backdrop_path"] ?? "",
-        genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
+        genreIds: json["genre_ids"] == null ? [] : List<int>.from(json["genre_ids"].map((x) => x)),
         id: json["id"],
         originalLanguage: json["original_language"] ?? "",
         originalTitle: json["original_title"] ?? "",
