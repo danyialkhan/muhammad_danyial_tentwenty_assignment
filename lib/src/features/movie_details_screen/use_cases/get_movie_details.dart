@@ -4,7 +4,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/services/errors/failures.d
 import 'package:muhammad_danyial_tentwenty_assignment/services/repository/repository.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/services/usecases/usecase.dart';
 
-/// This use case will gets the list of all upcoming moves
+/// This method will gets the details of movie against the provided id.
 /// Input: [GetMovieDetailsParams] contains movie id.
 /// Output: If successful returns [MovieDetails] details of the movie.
 /// If unsuccessful returns [Failure]
