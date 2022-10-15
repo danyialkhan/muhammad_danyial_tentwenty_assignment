@@ -32,7 +32,7 @@ class TextStyles {
       textStyle: Theme.of(context).textTheme.subtitle1!.copyWith(
             fontWeight: fontWeight,
             fontSize: fontSize,
-            color: color ?? ColorConstants.secondaryFontColor,
+            color: color ?? ColorConstants.primaryFontColor,
           ),
     );
   }

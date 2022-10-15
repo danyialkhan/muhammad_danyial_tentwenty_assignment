@@ -5,3 +5,4 @@ class UpComingMoviesEvent {
 }
 
 class GetUpComingMoviesEvent extends UpComingMoviesEvent {}
+class GetNextUpComingMoviesPageEvent extends UpComingMoviesEvent {}

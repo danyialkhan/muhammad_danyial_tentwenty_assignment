@@ -68,15 +68,15 @@ class Dates extends Equatable {
     required this.minimum,
   });
 
-  final DateTime maximum;
-  final DateTime minimum;
+  final String maximum;
+  final String minimum;
 
   factory Dates.fromJson(Map<String, dynamic> json) => Dates(
-        maximum: DateTime.parse(json["maximum"]),
-        minimum: DateTime.parse(json["minimum"]),
+        maximum: json["maximum"] ?? "",
+        minimum: json["minimum"] ?? "",
       );
 
-  factory Dates.empty() => Dates(maximum: DateTime.now(), minimum: DateTime.now());
+  factory Dates.empty() => const Dates(maximum: '', minimum: '');
 
   @override
   List<Object?> get props => [maximum, minimum];
@@ -109,7 +109,7 @@ class Movie extends Equatable {
   final String overview;
   final double popularity;
   final String posterPath;
-  final DateTime releaseDate;
+  final String releaseDate;
   final String title;
   final bool video;
   final double voteAverage;
@@ -117,16 +117,16 @@ class Movie extends Equatable {
 
   factory Movie.fromJson(Map<String, dynamic> json) => Movie(
         adult: json["adult"],
-        backdropPath: json["backdrop_path"],
+        backdropPath: json["backdrop_path"] ?? "",
         genreIds: List<int>.from(json["genre_ids"].map((x) => x)),
         id: json["id"],
-        originalLanguage: json["original_language"],
-        originalTitle: json["original_title"],
+        originalLanguage: json["original_language"] ?? "",
+        originalTitle: json["original_title"] ?? "",
         overview: json["overview"],
         popularity: json["popularity"].toDouble(),
-        posterPath: json["poster_path"],
-        releaseDate: DateTime.parse(json["release_date"]),
-        title: json["title"],
+        posterPath: json["poster_path"] ?? "",
+        releaseDate: json["release_date"] ?? "",
+        title: json["title"] ?? "",
         video: json["video"],
         voteAverage: json["vote_average"].toDouble(),
         voteCount: json["vote_count"],

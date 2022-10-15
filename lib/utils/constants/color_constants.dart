@@ -9,7 +9,7 @@ class ColorConstants {
   static Color activeFontColor = const Color(0xFF202C43);
   static Color secondaryAppColor = const Color(0xFF2E2739);
   static Color inactiveIconColor = const Color(0xFF827D88);
-  static Color secondaryAppGreyColor = const Color(0xFFEFEFEF);
+  static Color secondaryAppGreyColor = const Color(0xFFF2F2F6);
   static Color secondaryAppGreenLightColor = const Color(0xFFEAF8E7);
   static Color secondaryDarkAppColor = Colors.white;
   static Color dividerColor = const Color(0xFF9B9B9B);

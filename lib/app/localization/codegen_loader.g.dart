@@ -20,7 +20,8 @@ class CodegenLoader extends AssetLoader{
   "media_library": "Media Library",
   "more": "More",
   "something_went_wrong": "Something went wrong",
-  "no_internet": "No Internet"
+  "no_internet": "No Internet",
+  "results_not_found": "Results not found"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en};
 }

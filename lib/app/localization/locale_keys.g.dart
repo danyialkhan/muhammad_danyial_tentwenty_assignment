@@ -7,5 +7,6 @@ abstract class  LocaleKeys {
   static const more = 'more';
   static const something_went_wrong = 'something_went_wrong';
   static const no_internet = 'no_internet';
+  static const results_not_found = 'results_not_found';
 
 }

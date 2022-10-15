@@ -17,12 +17,16 @@ class UpComingMoviesBloc extends Bloc<UpComingMoviesEvent, UpComingMoviesState> 
       : _getUpComingMoviesList = getUpComingMoviesList,
         super(UpComingMoviesState.initial()) {
     on<GetUpComingMoviesEvent>(_onGetUpComingMovies);
+    on<GetNextUpComingMoviesPageEvent>(_onGetNextPage);
   }
 
   FutureOr<void> _onGetUpComingMovies(GetUpComingMoviesEvent event, Emitter<UpComingMoviesState> emit) async {
+    if(state.currentPage > state.totalPages) {
+      return;
+    }
     emit(state.copyWith(fetching: true, failureEither: right(unit)));
     GetUpComingMoviesListParams params = GetUpComingMoviesListParams(
-      page: 1,
+      page: state.currentPage,
       language: Localizations.localeOf(navigatorKeyGlobal.currentState!.context).languageCode,
     );
     final resultEither = await _getUpComingMoviesList(params);
@@ -35,6 +39,52 @@ class UpComingMoviesBloc extends Bloc<UpComingMoviesEvent, UpComingMoviesState> 
 
     final response = resultEither.getOrElse(() => MoviesList.empty());
 
-    emit(state.copyWith(fetching: false, failureEither: right(unit), moviesList: response));
+    state.results.addAll(response.results);
+    final totalPages = response.totalPages;
+    final results = [...state.results];
+    final currentPage = state. currentPage + 1;
+
+    emit(state.copyWith(
+      fetching: false,
+      failureEither: right(unit),
+      moviesList: response,
+      currentPage: currentPage,
+      results: results,
+      totalPages: totalPages,
+    ));
+  }
+
+  FutureOr<void> _onGetNextPage(GetNextUpComingMoviesPageEvent event, Emitter<UpComingMoviesState> emit) async {
+    if(state.currentPage > state.totalPages) {
+      return;
+    }
+    emit(state.copyWith(fetchingNextPage: true, failureEither: right(unit)));
+    GetUpComingMoviesListParams params = GetUpComingMoviesListParams(
+      page: state.currentPage,
+      language: Localizations.localeOf(navigatorKeyGlobal.currentState!.context).languageCode,
+    );
+    final resultEither = await _getUpComingMoviesList(params);
+
+    if (resultEither.isLeft()) {
+      final failure = handleFailure(resultEither);
+      emit(state.copyWith(fetchingNextPage: false, failureEither: left(failure)));
+      return;
+    }
+
+    final response = resultEither.getOrElse(() => MoviesList.empty());
+
+    state.results.addAll(response.results);
+    final totalPages = response.totalPages;
+    final results = [...state.results];
+    final currentPage = state. currentPage + 1;
+
+    emit(state.copyWith(
+      fetching: false,
+      failureEither: right(unit),
+      moviesList: response,
+      currentPage: currentPage,
+      results: results,
+      totalPages: totalPages,
+    ));
   }
 }
