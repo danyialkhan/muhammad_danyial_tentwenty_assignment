@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/app/app_theme/app_theme_data.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/globals.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/router/navigation_observer.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/router/routes.dart';
@@ -54,9 +55,7 @@ class MyApp extends StatelessWidget {
           onGenerateRoute: onGenerateRoute,
 
           title: 'MovieApp',
-          theme: ThemeData(
-            primarySwatch: Colors.blue,
-          ),
+          theme: ThemeConfig.lightTheme,
           navigatorObservers: [MyNavigationObserver()],
         ),
       ),
