@@ -1,10 +1,14 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/app/asset_paths/asset_pathc.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/app/localization/locale_keys.g.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/common_widgets/comming_soon.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/home/bloc/bloc.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/color_constants.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/text_styles.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/globals.dart';
 import 'package:persistent_bottom_nav_bar/persistent_tab_view.dart';
 
@@ -40,30 +44,50 @@ class _HomeTabScreenContentState extends State<HomeTabScreenContent> {
 
   List<Widget> _buildScreens() {
     return [
-      ComingSoon(),
-      ComingSoon(),
-      ComingSoon(),
-      ComingSoon(),
+      const ComingSoon(),
+      const ComingSoon(),
+      const ComingSoon(),
+      const ComingSoon(),
     ];
   }
 
   List<PersistentBottomNavBarItem> _navBarsItems() {
     return [
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(AssetPaths.dashboardIconPath),
-        title: ("dashboard".tr()),
+        icon: SvgPicture.asset(AssetPaths.dashboardIconPath, color: ColorConstants.primaryAppColor),
+        title: (LocaleKeys.dashboard.tr()),
+        inactiveColorPrimary: ColorConstants.inactiveIconColor,
+        activeColorPrimary: ColorConstants.primaryAppColor,
+        textStyle: context.getBodyText1TextStyle(fontSize: 10.sp),
+        iconSize: 18.h,
+        inactiveIcon: SvgPicture.asset(AssetPaths.dashboardIconPath, color: ColorConstants.inactiveIconColor),
       ),
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(AssetPaths.watchIconPath),
-        title: ("Settings"),
+        icon: SvgPicture.asset(AssetPaths.watchIconPath, color: ColorConstants.primaryAppColor),
+        title: (LocaleKeys.watch.tr()),
+        inactiveColorPrimary: ColorConstants.inactiveIconColor,
+        activeColorPrimary: ColorConstants.primaryAppColor,
+        textStyle: context.getBodyText1TextStyle(fontSize: 10.sp),
+        iconSize: 18.h,
+        inactiveIcon: SvgPicture.asset(AssetPaths.watchIconPath, color: ColorConstants.inactiveIconColor),
       ),
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(AssetPaths.mediaLibraryIconPath),
-        title: ("Settings"),
+        icon: SvgPicture.asset(AssetPaths.mediaLibraryIconPath, color: ColorConstants.primaryAppColor),
+        title: (LocaleKeys.media_library.tr()),
+        inactiveColorPrimary: ColorConstants.inactiveIconColor,
+        activeColorPrimary: ColorConstants.primaryAppColor,
+        textStyle: context.getBodyText1TextStyle(fontSize: 10.sp),
+        iconSize: 18.h,
+        inactiveIcon: SvgPicture.asset(AssetPaths.mediaLibraryIconPath, color: ColorConstants.inactiveIconColor),
       ),
       PersistentBottomNavBarItem(
-        icon: SvgPicture.asset(AssetPaths.moreIconPath),
-        title: ("Settings"),
+        icon: SvgPicture.asset(AssetPaths.moreIconPath, color: ColorConstants.primaryAppColor),
+        title: (LocaleKeys.more.tr()),
+        inactiveColorPrimary: ColorConstants.inactiveIconColor,
+        activeColorPrimary: ColorConstants.primaryAppColor,
+        textStyle: context.getBodyText1TextStyle(fontSize: 10.sp),
+        iconSize: 18.h,
+        inactiveIcon: SvgPicture.asset(AssetPaths.moreIconPath, color: ColorConstants.inactiveIconColor),
       ),
     ];
   }
@@ -76,14 +100,16 @@ class _HomeTabScreenContentState extends State<HomeTabScreenContent> {
       screens: _buildScreens(),
       items: _navBarsItems(),
       confineInSafeArea: true,
-      backgroundColor: Colors.white, // Default is Colors.white.
+      navBarHeight: 90.h,
+      padding: NavBarPadding.only(bottom: 25.h, top: 20.h),
+      backgroundColor: ColorConstants.secondaryAppColor, // Default is Colors.white.
       handleAndroidBackButtonPress: true, // Default is true.
       resizeToAvoidBottomInset: true, // This needs to be true if you want to move up the screen when keyboard appears. Default is true.
       stateManagement: true, // Default is true.
       hideNavigationBarWhenKeyboardShows: true, // Recommended to set 'resizeToAvoidBottomInset' as true while using this argument. Default is true.
       decoration: NavBarDecoration(
-        borderRadius: BorderRadius.circular(10.0),
-        colorBehindNavBar: Colors.white,
+        borderRadius: BorderRadius.circular(27.r),
+        colorBehindNavBar: ColorConstants.secondaryAppColor,
       ),
       popAllScreensOnTapOfSelectedTab: true,
       popActionScreens: PopActionScreensType.all,
