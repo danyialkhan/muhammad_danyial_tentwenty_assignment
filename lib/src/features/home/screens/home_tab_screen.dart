@@ -7,6 +7,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/app/asset_paths/asset_path
 import 'package:muhammad_danyial_tentwenty_assignment/app/localization/locale_keys.g.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/common_widgets/comming_soon.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/home/bloc/bloc.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/screens/movie_list_screen.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/color_constants.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/text_styles.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/globals.dart';
@@ -38,14 +39,14 @@ class _HomeTabScreenContentState extends State<HomeTabScreenContent> {
 
   @override
   void initState() {
-    _controller = PersistentTabController(initialIndex: 0);
+    _controller = PersistentTabController(initialIndex: 1);
     super.initState();
   }
 
   List<Widget> _buildScreens() {
     return [
       const ComingSoon(),
-      const ComingSoon(),
+      const MovieListScreen(),
       const ComingSoon(),
       const ComingSoon(),
     ];

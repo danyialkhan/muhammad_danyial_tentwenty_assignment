@@ -50,6 +50,14 @@ class MoviesList extends Equatable {
         totalResults: json["total_results"],
       );
 
+  factory MoviesList.empty() => MoviesList(
+        dates: Dates.empty(),
+        page: 0,
+        results: const [],
+        totalPages: 0,
+        totalResults: 0,
+      );
+
   @override
   List<Object?> get props => [dates, page, results, totalPages, totalResults];
 }
@@ -67,6 +75,8 @@ class Dates extends Equatable {
         maximum: DateTime.parse(json["maximum"]),
         minimum: DateTime.parse(json["minimum"]),
       );
+
+  factory Dates.empty() => Dates(maximum: DateTime.now(), minimum: DateTime.now());
 
   @override
   List<Object?> get props => [maximum, minimum];

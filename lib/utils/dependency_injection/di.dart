@@ -1,6 +1,8 @@
 import 'package:dio/dio.dart';
 import 'package:internet_connection_checker/internet_connection_checker.dart';
 import 'package:logger/logger.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/services/datasources/remote_datasource/dio_error_handler.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/services/datasources/remote_datasource/dio_wrapper.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/services/datasources/remote_datasource/remote_data_source.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/services/datasources/remote_datasource/remote_datasource_impl.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/services/repository/repositiry_impl.dart';
@@ -9,6 +11,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/useca
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/home/bloc/bloc.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_details.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_images.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/bloc/upcomming_movies_bloc.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/usecases/get_upcoming_movies_list.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/search_movies/usecases/search_movie.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/globals.dart';
@@ -32,6 +35,12 @@ void registerExternalTrovesDependencies() {
   sl.registerLazySingleton<Dio>(() => Dio(BaseOptions(receiveTimeout: 60000, connectTimeout: 60000, sendTimeout: 60000, baseUrl: url)));
   sl.registerLazySingleton<InternetConnectionChecker>(() => InternetConnectionChecker());
   sl.registerLazySingleton<Logger>(() => Logger(filter: ShowAllLogsFilter()));
+  sl.registerLazySingleton<DioErrorHandler>(() => DioErrorHandlerImpl());
+  sl.registerLazySingleton<DioWrapper>(() => DioWrapperImpl(
+        dio: sl(),
+        logger: sl(),
+        dioErrorHandler: sl(),
+      ));
 }
 
 void registerRepository() {
@@ -47,6 +56,7 @@ void registerDataSources() {
 
 void registerBlocs() {
   sl.registerLazySingleton<HomeTabBloc>(() => HomeTabBloc());
+  sl.registerLazySingleton<UpComingMoviesBloc>(() => UpComingMoviesBloc(getUpComingMoviesList: sl()));
 }
 
 void registerUseCases() {

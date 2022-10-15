@@ -23,10 +23,10 @@ class DioWrapperImpl extends DioWrapper {
   DioWrapperImpl({
     required Dio dio,
     required Logger logger,
-    required DioErrorHandler fingeRateErrorHandler,
+    required DioErrorHandler dioErrorHandler,
   })  : _dio = dio,
         _logger = logger,
-        _fingerateErrorHandler = fingeRateErrorHandler;
+        _fingerateErrorHandler = dioErrorHandler;
 
   @override
   Future<Response<dynamic>> onPost({

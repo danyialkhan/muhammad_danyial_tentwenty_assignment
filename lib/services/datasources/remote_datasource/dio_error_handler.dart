@@ -7,7 +7,7 @@ abstract class DioErrorHandler {
   Failure throwDefaultFailure();
 }
 
-class FingeRateErrorHandlerImpl extends DioErrorHandler {
+class DioErrorHandlerImpl extends DioErrorHandler {
   @override
   Failure resolveErrors({required dio.Response<dynamic> response}) {
     switch (response.statusCode) {
