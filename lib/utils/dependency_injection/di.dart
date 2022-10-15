@@ -8,6 +8,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/services/repository/reposi
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/usecases/get_generes.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/home/bloc/bloc.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_details.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_images.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/usecases/get_upcoming_movies_list.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/search_movies/usecases/search_movie.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/globals.dart';
@@ -53,6 +54,7 @@ void registerUseCases() {
   sl.registerLazySingleton<GetMovieDetails>(() => GetMovieDetails(sl()));
   sl.registerLazySingleton<GetMovieGenre>(() => GetMovieGenre(sl()));
   sl.registerLazySingleton<SearchMovies>(() => SearchMovies(sl()));
+  sl.registerLazySingleton<GetMovieImages>(() => GetMovieImages(sl()));
 }
 
 class ShowAllLogsFilter extends LogFilter {
