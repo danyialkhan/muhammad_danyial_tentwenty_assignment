@@ -59,7 +59,7 @@ class _MovieListScreenContentState extends State<MovieListScreenContent> {
           listener: (context, state) {},
           builder: (context, state) {
             return Container(
-              margin: EdgeInsets.symmetric(vertical: 30.h, horizontal: 20.w),
+              margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
               child: state.fetching
                   ? Shimmer.fromColors(
                       baseColor: Colors.grey[300]!,

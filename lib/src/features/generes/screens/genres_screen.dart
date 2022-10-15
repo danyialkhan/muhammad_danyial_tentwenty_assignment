@@ -46,7 +46,7 @@ class _GenreScreenContentState extends State<GenreScreenContent> {
           controller: context.read<GenreBloc>().controller,
         ),
         body: Container(
-          margin: EdgeInsets.symmetric(vertical: 30.h, horizontal: 10.w),
+          margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),
           child: BlocConsumer<GenreBloc, GenreState>(
             listener: (context, state) {
               if (state is GoBackState) {
