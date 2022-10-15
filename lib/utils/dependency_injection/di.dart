@@ -5,6 +5,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/services/datasources/remot
 import 'package:muhammad_danyial_tentwenty_assignment/services/datasources/remote_datasource/remote_datasource_impl.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/services/repository/repositiry_impl.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/services/repository/repository.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/usecases/get_generes.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/home/bloc/bloc.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_details.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/usecases/get_upcoming_movies_list.dart';
@@ -49,6 +50,7 @@ void registerBlocs() {
 void registerUseCases() {
   sl.registerLazySingleton<GetUpComingMoviesList>(() => GetUpComingMoviesList(sl()));
   sl.registerLazySingleton<GetMovieDetails>(() => GetMovieDetails(sl()));
+  sl.registerLazySingleton<GetMovieGenre>(() => GetMovieGenre(sl()));
 }
 
 class ShowAllLogsFilter extends LogFilter {
