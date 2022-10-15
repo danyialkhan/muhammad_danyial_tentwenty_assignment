@@ -29,11 +29,11 @@ class CustomAppBar extends StatelessWidget implements PreferredSizeWidget {
         Positioned(
           top: 0,
           bottom: 0,
-          right: 0,
+          right: 10.w,
           child: IconButton(
             icon: const Icon(Icons.search),
             iconSize: 25,
-            onPressed: () {},
+            onPressed: onTapSearch,
           ),
         ),
       ],

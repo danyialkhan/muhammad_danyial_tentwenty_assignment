@@ -6,6 +6,7 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/app/asset_paths/asset_pathc.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/app/localization/locale_keys.g.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/common_widgets/comming_soon.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/screens/genres_screen.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/home/bloc/bloc.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/screens/movie_list_screen.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/color_constants.dart';
@@ -74,7 +75,7 @@ class _HomeTabScreenContentState extends State<HomeTabScreenContent> {
           routeAndNavigatorSettings: RouteAndNavigatorSettings(
             initialRoute: '/',
             routes: {
-              '/watch': (context) => Container(),
+              '/genreScreen': (context) => const GenreScreen(),
               '/search': (context) => Container(),
             },
           )),

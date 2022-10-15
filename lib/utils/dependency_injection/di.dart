@@ -7,6 +7,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/services/datasources/remot
 import 'package:muhammad_danyial_tentwenty_assignment/services/datasources/remote_datasource/remote_datasource_impl.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/services/repository/repositiry_impl.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/services/repository/repository.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/bloc/genre_bloc.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/usecases/get_generes.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/home/bloc/bloc.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_details.dart';
@@ -57,6 +58,7 @@ void registerDataSources() {
 void registerBlocs() {
   sl.registerLazySingleton<HomeTabBloc>(() => HomeTabBloc());
   sl.registerLazySingleton<UpComingMoviesBloc>(() => UpComingMoviesBloc(getUpComingMoviesList: sl()));
+  sl.registerLazySingleton<GenreBloc>(() => GenreBloc(getMovieGenre: sl()));
 }
 
 void registerUseCases() {

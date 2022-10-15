@@ -8,6 +8,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/src/features/common_widget
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/bloc/upcomming_movies_bloc.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/color_constants.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/text_styles.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/utils/extensions/navigator_extensions.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/globals.dart';
 import 'package:shimmer/shimmer.dart';
 
@@ -51,7 +52,7 @@ class _MovieListScreenContentState extends State<MovieListScreenContent> {
     return SafeArea(
       child: Scaffold(
         appBar: CustomAppBar(
-          onTapSearch: () {},
+          onTapSearch: () => context.pushNamed(route: '/genreScreen'),
         ),
         backgroundColor: ColorConstants.secondaryAppGreyColor,
         body: BlocConsumer<UpComingMoviesBloc, UpComingMoviesState>(

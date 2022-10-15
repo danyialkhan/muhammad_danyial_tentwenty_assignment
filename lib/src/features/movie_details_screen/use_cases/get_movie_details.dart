@@ -3,6 +3,7 @@ import 'package:equatable/equatable.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/services/errors/failures.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/services/repository/repository.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/services/usecases/usecase.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/usecases/get_generes.dart';
 
 /// This method will gets the details of movie against the provided id.
 /// Input: [GetMovieDetailsParams] contains movie id.
@@ -137,24 +138,6 @@ class MovieDetails extends Equatable {
         voteAverage,
         voteCount,
       ];
-}
-
-class Genre extends Equatable {
-  const Genre({
-    required this.id,
-    required this.name,
-  });
-
-  final int id;
-  final String name;
-
-  factory Genre.fromJson(Map<String, dynamic> json) => Genre(
-        id: json["id"],
-        name: json["name"],
-      );
-
-  @override
-  List<Object?> get props => [id, name];
 }
 
 class ProductionCompany extends Equatable {
