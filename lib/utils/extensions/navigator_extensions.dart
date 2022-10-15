@@ -9,7 +9,7 @@ extension NavigationHelper on BuildContext {
     Navigator.of(this).popUntil((route) => route.settings.name == routeName);
   }
 
-  void pop({required String routeName}) {
+  void pop() {
     Navigator.of(this).pop();
   }
 

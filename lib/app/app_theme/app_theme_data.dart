@@ -30,7 +30,7 @@ class ThemeConfig {
         cardTheme: cardTheme(cardBackground),
         backgroundColor: background,
         primaryColor: primaryAppColor,
-        scaffoldBackgroundColor: primaryAppColor,
+        scaffoldBackgroundColor: ColorConstants.secondaryAppGreyColor,
         textSelectionTheme: textSelectionThemeData(secondaryText!),
         toggleableActiveColor: accentColor,
         appBarTheme: appBarTheme(cardBackground, secondaryText, baseTextTheme),

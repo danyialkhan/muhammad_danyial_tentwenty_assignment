@@ -1,9 +1,11 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/common_widgets/search_app_bar.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/bloc/genre_bloc.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/color_constants.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/text_styles.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/utils/extensions/navigator_extensions.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/globals.dart';
 
 class GenreScreen extends StatelessWidget {
@@ -38,9 +40,20 @@ class _GenreScreenContentState extends State<GenreScreenContent> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
+        appBar: SearchAppBar(
+          onTapClose: () => context.read<GenreBloc>().add(OnTapCrossEvent()),
+          onChanged: (val) => context.read<GenreBloc>().add(OnSearchChangedEvent(val)),
+          controller: context.read<GenreBloc>().controller,
+        ),
         body: Container(
           margin: EdgeInsets.symmetric(vertical: 30.h, horizontal: 10.w),
-          child: BlocBuilder<GenreBloc, GenreState>(
+          child: BlocConsumer<GenreBloc, GenreState>(
+            listener: (context, state) {
+              if (state is GoBackState) {
+                context.pop();
+                return;
+              }
+            },
             builder: (context, state) {
               return GridView.builder(
                 gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
