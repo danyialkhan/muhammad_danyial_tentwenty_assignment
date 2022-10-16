@@ -92,164 +92,170 @@ class _MovieDetailsScreenContentState extends State<MovieDetailsScreenContent> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        body: SingleChildScrollView(
-          child: BlocBuilder<MovieDetailsBloc, MovieDetailsState>(builder: (context, state) {
-            return Column(
-              mainAxisAlignment: MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Stack(
-                  children: [
-                    SizedBox(
-                      width: double.infinity,
-                      child: CachedNetworkImage(
-                        imageUrl: '${imageUrl}w1280${state.movieDetails.posterPath}',
-                        progressIndicatorBuilder: (context, url, downloadProgress) => Center(
-                          child: Shimmer.fromColors(
-                            baseColor: Colors.grey[300]!,
-                            highlightColor: Colors.grey[100]!,
-                            child: SizedBox(
-                              height: 0.5.sh,
-                              width: double.infinity,
-                            ),
-                          ),
-                        ),
-                        errorWidget: (context, url, error) => const Icon(Icons.image),
-                      ),
-                    ),
-                    Positioned(
-                      top: 20.h,
-                      left: 15.w,
-                      child: Row(
-                        children: [
-                          IconButton(
-                            onPressed: () => context.pop(),
-                            icon: Icon(
-                              Icons.arrow_back_ios,
-                              color: ColorConstants.primaryAppColor,
-                              size: 25.h,
-                            ),
-                          ),
-                          Text(
-                            widget.routeFrom,
-                            style: context.getSubtitleTextStyle(
-                              color: ColorConstants.primaryAppColor,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                        ],
-                      ),
-                    ),
-                    Positioned(
-                      // top: 0,
-                      left: 0,
-                      bottom: 0,
-                      right: 0,
-                      child: Column(
-                        children: [
-                          Text(
-                            LocaleKeys.in_theaters_date.tr(args: [(state.movieDetails.releaseDate)]),
-                            style: context.getSubtitleTextStyle(
-                              color: ColorConstants.primaryAppColor,
-                              fontWeight: FontWeight.w500,
-                            ),
-                          ),
-                          SizedBox(height: 10.h),
-                          GestureDetector(
-                            child: Container(
-                              width: 243.w,
-                              height: 50.h,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.r),
-                                color: ColorConstants.buttonColor,
-                              ),
-                              alignment: Alignment.center,
-                              child: Text(
-                                LocaleKeys.get_tickets.tr(),
-                                style: context.getSubtitleTextStyle(
-                                  color: ColorConstants.primaryAppColor,
-                                  fontSize: 14.sp,
-                                ),
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 10.h),
-                          GestureDetector(
-                            child: Container(
-                              width: 243.w,
-                              height: 50.h,
-                              decoration: BoxDecoration(
-                                borderRadius: BorderRadius.circular(10.r),
-                                color: ColorConstants.secondaryAppColor.withOpacity(0.6),
-                                border: Border.all(color: ColorConstants.buttonColor, width: 1),
-                              ),
-                              alignment: Alignment.center,
-                              child: Row(
-                                mainAxisAlignment: MainAxisAlignment.center,
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                children: [
-                                  Icon(Icons.play_arrow, color: ColorConstants.primaryAppColor),
-                                  Text(
-                                    LocaleKeys.watch_trailer.tr(),
-                                    style: context.getSubtitleTextStyle(
-                                      color: ColorConstants.primaryAppColor,
-                                      fontSize: 14.sp,
-                                    ),
-                                  ),
-                                ],
-                              ),
-                            ),
-                          ),
-                          SizedBox(height: 40.h),
-                        ],
-                      ),
-                    )
-                  ],
-                ),
-                Container(
-                  margin: EdgeInsets.symmetric(horizontal: 40.w, vertical: 20.h),
-                  child: Column(
+        body: Column(
+          children: [
+            Expanded(
+              child: SingleChildScrollView(
+                child: BlocBuilder<MovieDetailsBloc, MovieDetailsState>(builder: (context, state) {
+                  return Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Text(
-                        LocaleKeys.genres.tr(),
-                        style: context.getSubtitleTextStyle(fontWeight: FontWeight.w500),
+                      Stack(
+                        children: [
+                          SizedBox(
+                            width: double.infinity,
+                            child: CachedNetworkImage(
+                              imageUrl: '${imageUrl}w1280${state.movieDetails.posterPath}',
+                              progressIndicatorBuilder: (context, url, downloadProgress) => Center(
+                                child: Shimmer.fromColors(
+                                  baseColor: Colors.grey[300]!,
+                                  highlightColor: Colors.grey[100]!,
+                                  child: SizedBox(
+                                    height: 0.5.sh,
+                                    width: double.infinity,
+                                  ),
+                                ),
+                              ),
+                              errorWidget: (context, url, error) => const Icon(Icons.image),
+                            ),
+                          ),
+                          Positioned(
+                            top: 20.h,
+                            left: 15.w,
+                            child: Row(
+                              children: [
+                                IconButton(
+                                  onPressed: () => context.pop(),
+                                  icon: Icon(
+                                    Icons.arrow_back_ios,
+                                    color: ColorConstants.primaryAppColor,
+                                    size: 25.h,
+                                  ),
+                                ),
+                                Text(
+                                  widget.routeFrom,
+                                  style: context.getSubtitleTextStyle(
+                                    color: ColorConstants.primaryAppColor,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                              ],
+                            ),
+                          ),
+                          Positioned(
+                            // top: 0,
+                            left: 0,
+                            bottom: 0,
+                            right: 0,
+                            child: Column(
+                              children: [
+                                Text(
+                                  LocaleKeys.in_theaters_date.tr(args: [(state.movieDetails.releaseDate)]),
+                                  style: context.getSubtitleTextStyle(
+                                    color: ColorConstants.primaryAppColor,
+                                    fontWeight: FontWeight.w500,
+                                  ),
+                                ),
+                                SizedBox(height: 10.h),
+                                GestureDetector(
+                                  child: Container(
+                                    width: 243.w,
+                                    height: 50.h,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.r),
+                                      color: ColorConstants.buttonColor,
+                                    ),
+                                    alignment: Alignment.center,
+                                    child: Text(
+                                      LocaleKeys.get_tickets.tr(),
+                                      style: context.getSubtitleTextStyle(
+                                        color: ColorConstants.primaryAppColor,
+                                        fontSize: 14.sp,
+                                      ),
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 10.h),
+                                GestureDetector(
+                                  child: Container(
+                                    width: 243.w,
+                                    height: 50.h,
+                                    decoration: BoxDecoration(
+                                      borderRadius: BorderRadius.circular(10.r),
+                                      color: ColorConstants.secondaryAppColor.withOpacity(0.6),
+                                      border: Border.all(color: ColorConstants.buttonColor, width: 1),
+                                    ),
+                                    alignment: Alignment.center,
+                                    child: Row(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      crossAxisAlignment: CrossAxisAlignment.center,
+                                      children: [
+                                        Icon(Icons.play_arrow, color: ColorConstants.primaryAppColor),
+                                        Text(
+                                          LocaleKeys.watch_trailer.tr(),
+                                          style: context.getSubtitleTextStyle(
+                                            color: ColorConstants.primaryAppColor,
+                                            fontSize: 14.sp,
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                                SizedBox(height: 40.h),
+                              ],
+                            ),
+                          )
+                        ],
                       ),
-                      SizedBox(
-                        width: double.infinity,
-                        height: 25.h,
-                        child: ListView(
-                          scrollDirection: Axis.horizontal,
-                          shrinkWrap: true,
+                      Container(
+                        margin: EdgeInsets.symmetric(horizontal: 40.w, vertical: 20.h),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.start,
+                          crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            ..._getGenresList(state.movieDetails.genres),
+                            Text(
+                              LocaleKeys.genres.tr(),
+                              style: context.getSubtitleTextStyle(fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(
+                              width: double.infinity,
+                              height: 25.h,
+                              child: ListView(
+                                scrollDirection: Axis.horizontal,
+                                shrinkWrap: true,
+                                children: [
+                                  ..._getGenresList(state.movieDetails.genres),
+                                ],
+                              ),
+                            ),
+                            SizedBox(height: 20.h),
+                            Divider(color: ColorConstants.secondaryAppColor.withOpacity(0.3)),
+                            SizedBox(height: 20.h),
+                            Text(
+                              LocaleKeys.overview.tr(),
+                              style: context.getSubtitleTextStyle(fontWeight: FontWeight.w500),
+                            ),
+                            SizedBox(height: 10.h),
+                            AutoSizeText.rich(
+                              TextSpan(
+                                text: state.movieDetails.overview,
+                                style: context.getButtonTextStyle(
+                                  color: ColorConstants.overviewTextColor,
+                                  fontWeight: FontWeight.w400,
+                                ),
+                              ),
+                            ),
                           ],
                         ),
                       ),
-                      SizedBox(height: 20.h),
-                      Divider(color: ColorConstants.secondaryAppColor.withOpacity(0.3)),
-                      SizedBox(height: 20.h),
-                      Text(
-                        LocaleKeys.overview.tr(),
-                        style: context.getSubtitleTextStyle(fontWeight: FontWeight.w500),
-                      ),
-                      SizedBox(height: 10.h),
-                      AutoSizeText.rich(
-                        TextSpan(
-                          text: state.movieDetails.overview,
-                          style: context.getButtonTextStyle(
-                            color: ColorConstants.overviewTextColor,
-                            fontWeight: FontWeight.w400,
-                          ),
-                        ),
-                      ),
                     ],
-                  ),
-                ),
-              ],
-            );
-          }),
+                  );
+                }),
+              ),
+            ),
+          ],
         ),
       ),
     );

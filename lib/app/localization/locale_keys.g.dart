@@ -16,5 +16,6 @@ abstract class  LocaleKeys {
   static const watch_trailer = 'watch_trailer';
   static const genres = 'genres';
   static const overview = 'overview';
+  static const search = 'search';
 
 }

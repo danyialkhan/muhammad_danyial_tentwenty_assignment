@@ -1,12 +1,17 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
+import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/app/localization/locale_keys.g.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/usecases/get_generes.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/usecases/get_upcoming_movies_list.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/color_constants.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/text_styles.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/utils/extensions/navigator_extensions.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/globals.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/utils/router/route_params.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/utils/router/routes.dart';
 
 class MovieListWidget extends StatelessWidget {
   final List<Movie> movies;
@@ -67,13 +72,25 @@ class MovieListWidget extends StatelessWidget {
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      AutoSizeText(
-                        movies[index].title,
-                        maxFontSize: 16,
-                        minFontSize: 8,
-                        maxLines: 2,
-                        style: context.getSubtitleTextStyle(
-                          fontWeight: FontWeight.w500,
+                      GestureDetector(
+                        onTap: () {
+                          context.pushNamed(
+                            route: movieDetailsScreenRoute,
+                            rootNavigator: true,
+                            arguments: MovieDetailsScreenParams(
+                              movieID: movies[index].id,
+                              routeFrom: LocaleKeys.search.tr(),
+                            ),
+                          );
+                        },
+                        child: AutoSizeText(
+                          movies[index].title,
+                          maxFontSize: 16,
+                          minFontSize: 8,
+                          maxLines: 2,
+                          style: context.getSubtitleTextStyle(
+                            fontWeight: FontWeight.w500,
+                          ),
                         ),
                       ),
                       if (movies[index].genreIds.isNotEmpty) ...[
