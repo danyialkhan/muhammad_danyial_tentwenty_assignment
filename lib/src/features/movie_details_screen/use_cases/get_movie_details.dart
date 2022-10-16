@@ -5,7 +5,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/services/repository/reposi
 import 'package:muhammad_danyial_tentwenty_assignment/services/usecases/usecase.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/usecases/get_generes.dart';
 
-/// This method will gets the details of movie against the provided id.
+/// This use case will gets the details of movie against the provided id.
 /// Input: [GetMovieDetailsParams] contains movie id.
 /// Output: If successful returns [MovieDetails] details of the movie.
 /// If unsuccessful returns [Failure]
@@ -19,7 +19,7 @@ class GetMovieDetails extends UseCase<MovieDetails, GetMovieDetailsParams> {
 }
 
 class GetMovieDetailsParams extends Equatable {
-  final String movieId;
+  final int movieId;
 
   const GetMovieDetailsParams(this.movieId);
 
@@ -71,7 +71,7 @@ class MovieDetails extends Equatable {
   final String posterPath;
   final List<ProductionCompany> productionCompanies;
   final List<ProductionCountry> productionCountries;
-  final DateTime releaseDate;
+  final String releaseDate;
   final int revenue;
   final int runtime;
   final List<SpokenLanguage> spokenLanguages;
@@ -84,30 +84,58 @@ class MovieDetails extends Equatable {
 
   factory MovieDetails.fromJson(Map<String, dynamic> json) => MovieDetails(
         adult: json["adult"],
-        backdropPath: json["backdrop_path"],
+        backdropPath: json["backdrop_path"] ?? '',
         belongsToCollection: json["belongs_to_collection"],
-        budget: json["budget"],
-        genres: List<Genre>.from(json["genres"].map((x) => Genre.fromJson(x))),
-        homepage: json["homepage"],
+        budget: json["budget"] ?? 0,
+        genres: json["genres"] == null ? [] : List<Genre>.from(json["genres"].map((x) => Genre.fromJson(x))),
+        homepage: json["homepage"] ?? '',
         id: json["id"],
         imdbId: json["imdb_id"],
-        originalLanguage: json["original_language"],
-        originalTitle: json["original_title"],
-        overview: json["overview"],
+        originalLanguage: json["original_language"] ?? "",
+        originalTitle: json["original_title"] ?? '',
+        overview: json["overview"] ?? '',
         popularity: json["popularity"].toDouble(),
-        posterPath: json["poster_path"],
-        productionCompanies: List<ProductionCompany>.from(json["production_companies"].map((x) => ProductionCompany.fromJson(x))),
-        productionCountries: List<ProductionCountry>.from(json["production_countries"].map((x) => ProductionCountry.fromJson(x))),
-        releaseDate: DateTime.parse(json["release_date"]),
-        revenue: json["revenue"],
-        runtime: json["runtime"],
-        spokenLanguages: List<SpokenLanguage>.from(json["spoken_languages"].map((x) => SpokenLanguage.fromJson(x))),
-        status: json["status"],
-        tagline: json["tagline"],
-        title: json["title"],
+        posterPath: json["poster_path"] ?? '',
+        productionCompanies: json["production_companies"] == null ? [] : List<ProductionCompany>.from(json["production_companies"].map((x) => ProductionCompany.fromJson(x))),
+        productionCountries: json["production_countries"] == null ? [] : List<ProductionCountry>.from(json["production_countries"].map((x) => ProductionCountry.fromJson(x))),
+        releaseDate: json["release_date"] ?? '',
+        revenue: json["revenue"] ?? 0,
+        runtime: json["runtime"] ?? 0,
+        spokenLanguages: json["spoken_languages"] == null ? [] : List<SpokenLanguage>.from(json["spoken_languages"].map((x) => SpokenLanguage.fromJson(x))),
+        status: json["status"] ?? '',
+        tagline: json["tagline"] ?? '',
+        title: json["title"] ?? '',
         video: json["video"],
         voteAverage: json["vote_average"].toDouble(),
         voteCount: json["vote_count"],
+      );
+
+  factory MovieDetails.empty() => const MovieDetails(
+        adult: false,
+        backdropPath: '',
+        belongsToCollection: '',
+        budget: 0,
+        genres: [],
+        homepage: '',
+        id: 0,
+        imdbId: '',
+        originalLanguage: '',
+        originalTitle: '',
+        overview: '',
+        popularity: 0,
+        posterPath: '',
+        productionCompanies: [],
+        productionCountries: [],
+        releaseDate: '',
+        revenue: 0,
+        runtime: 0,
+        spokenLanguages: [],
+        status: '',
+        tagline: '',
+        title: '',
+        video: false,
+        voteAverage: 0,
+        voteCount: 0,
       );
 
   @override

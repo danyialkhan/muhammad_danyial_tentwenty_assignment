@@ -20,4 +20,5 @@ class ColorConstants {
   static Color greenColor = const Color(0xFF15D2BC);
   static Color purpleColor = const Color(0xFF564CA3);
   static Color lightGreyFontColor = const Color(0xFFDBDBDF);
+  static Color overviewTextColor = const Color(0xFF8F8F8F);
 }

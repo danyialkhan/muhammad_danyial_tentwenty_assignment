@@ -24,7 +24,12 @@ class CodegenLoader extends AssetLoader{
   "results_not_found": "Results not found",
   "tv_shows_movies_and_more": "TV shows, movies and more",
   "top_results": "top results",
-  "results_found": "{} Results Found"
+  "results_found": "{} Results Found",
+  "in_theaters_date": "In theaters {}",
+  "get_tickets": "Get Tickets",
+  "watch_trailer": "Watch Trailer",
+  "genres": "Genres",
+  "overview": "Overview"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en};
 }

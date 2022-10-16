@@ -1,8 +1,12 @@
 import 'package:flutter/cupertino.dart';
 
 extension NavigationHelper on BuildContext {
-  void pushNamed({required String route}) {
-    Navigator.of(this).pushNamed(route);
+  void pushNamed({
+    required String route,
+    bool rootNavigator = false,
+    Object? arguments,
+  }) {
+    Navigator.of(this, rootNavigator: rootNavigator).pushNamed(route, arguments: arguments);
   }
 
   void popUntil({required String routeName}) {

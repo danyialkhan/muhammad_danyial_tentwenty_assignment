@@ -10,6 +10,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/services/repository/reposi
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/bloc/genre_bloc.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/usecases/get_generes.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/home/bloc/bloc.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/bloc/movie_detail_bloc.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_details.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_images.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/bloc/upcomming_movies_bloc.dart';
@@ -59,6 +60,7 @@ void registerBlocs() {
   sl.registerLazySingleton<HomeTabBloc>(() => HomeTabBloc());
   sl.registerLazySingleton<UpComingMoviesBloc>(() => UpComingMoviesBloc(getUpComingMoviesList: sl()));
   sl.registerLazySingleton<GenreBloc>(() => GenreBloc(getMovieGenre: sl(), searchMovies: sl()));
+  sl.registerLazySingleton<MovieDetailsBloc>(() => MovieDetailsBloc(getMovieDetails: sl(), getMovieImages: sl()));
 }
 
 void registerUseCases() {

@@ -11,5 +11,10 @@ abstract class  LocaleKeys {
   static const tv_shows_movies_and_more = 'tv_shows_movies_and_more';
   static const top_results = 'top_results';
   static const results_found = 'results_found';
+  static const in_theaters_date = 'in_theaters_date';
+  static const get_tickets = 'get_tickets';
+  static const watch_trailer = 'watch_trailer';
+  static const genres = 'genres';
+  static const overview = 'overview';
 
 }

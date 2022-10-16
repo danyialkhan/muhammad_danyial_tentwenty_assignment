@@ -12,6 +12,8 @@ import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/color_cons
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/text_styles.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/extensions/navigator_extensions.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/globals.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/utils/router/route_params.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/utils/router/routes.dart';
 import 'package:shimmer/shimmer.dart';
 
 class MovieListScreen extends StatelessWidget {
@@ -96,46 +98,58 @@ class _MovieListScreenContentState extends State<MovieListScreenContent> {
                               )
                             : SliverList(
                                 delegate: SliverChildBuilderDelegate((_, index) {
-                                  return Card(
-                                    elevation: 1.0,
-                                    margin: EdgeInsets.only(bottom: 10.h),
-                                    shape: RoundedRectangleBorder(
-                                      borderRadius: BorderRadius.circular(16),
-                                    ),
-                                    child: Stack(
-                                      children: [
-                                        SizedBox(
-                                          height: 0.3.sh,
-                                          child: CachedNetworkImage(
-                                            imageUrl: '${imageUrl}w1280${state.results[index].backdropPath}',
-                                            progressIndicatorBuilder: (context, url, downloadProgress) => Center(
-                                              child: CircularProgressIndicator(
-                                                value: downloadProgress.progress,
-                                                color: ColorConstants.primaryAppColor,
-                                              ),
-                                            ),
-                                            errorWidget: (context, url, error) => const Icon(Icons.image),
-                                            fit: BoxFit.cover,
-                                          ),
+                                  return GestureDetector(
+                                    onTap: () {
+                                      context.pushNamed(
+                                        route: movieDetailsScreenRoute,
+                                        rootNavigator: true,
+                                        arguments: MovieDetailsScreenParams(
+                                          movieID: state.results[index].id,
+                                          routeFrom: LocaleKeys.watch.tr(),
                                         ),
-                                        Positioned(
-                                          bottom: 20.h,
-                                          left: 10.w,
-                                          child: Container(
-                                            padding: EdgeInsets.all(5.h),
-                                            decoration: BoxDecoration(color: ColorConstants.secondaryAppColor.withOpacity(0.4)),
-                                            child: AutoSizeText(
-                                              state.results[index].title,
-                                              maxLines: 2,
-                                              maxFontSize: 18,
-                                              style: context.getBodyText1TextStyle(
-                                                fontWeight: FontWeight.w500,
-                                                color: ColorConstants.primaryAppColor,
+                                      );
+                                    },
+                                    child: Card(
+                                      elevation: 1.0,
+                                      margin: EdgeInsets.only(bottom: 10.h),
+                                      shape: RoundedRectangleBorder(
+                                        borderRadius: BorderRadius.circular(16),
+                                      ),
+                                      child: Stack(
+                                        children: [
+                                          SizedBox(
+                                            height: 0.3.sh,
+                                            child: CachedNetworkImage(
+                                              imageUrl: '${imageUrl}w1280${state.results[index].backdropPath}',
+                                              progressIndicatorBuilder: (context, url, downloadProgress) => Center(
+                                                child: CircularProgressIndicator(
+                                                  value: downloadProgress.progress,
+                                                  color: ColorConstants.primaryAppColor,
+                                                ),
                                               ),
+                                              errorWidget: (context, url, error) => const Icon(Icons.image),
+                                              fit: BoxFit.cover,
                                             ),
                                           ),
-                                        ),
-                                      ],
+                                          Positioned(
+                                            bottom: 20.h,
+                                            left: 10.w,
+                                            child: Container(
+                                              padding: EdgeInsets.all(5.h),
+                                              decoration: BoxDecoration(color: ColorConstants.secondaryAppColor.withOpacity(0.4)),
+                                              child: AutoSizeText(
+                                                state.results[index].title,
+                                                maxLines: 2,
+                                                maxFontSize: 18,
+                                                style: context.getBodyText1TextStyle(
+                                                  fontWeight: FontWeight.w500,
+                                                  color: ColorConstants.primaryAppColor,
+                                                ),
+                                              ),
+                                            ),
+                                          ),
+                                        ],
+                                      ),
                                     ),
                                   );
                                 }, childCount: state.results.length),

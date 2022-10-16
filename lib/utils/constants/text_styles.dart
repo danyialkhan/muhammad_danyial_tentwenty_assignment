@@ -15,7 +15,7 @@ class TextStyles {
     return GoogleFonts.poppins(
       textStyle: Theme.of(context).textTheme.button!.copyWith(
             fontWeight: fontWeight,
-            fontSize: fontSize ?? 14.sp,
+            fontSize: fontSize ?? 12.sp,
             color: color ?? ColorConstants.secondaryFontColor,
             decoration: decoration,
           ),
