@@ -7,7 +7,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/color_cons
 class TextStyles {
   static TextStyle getButtonTextStyle(
     BuildContext context, {
-    FontWeight fontWeight = FontWeight.w400,
+    FontWeight fontWeight = FontWeight.w700,
     double? fontSize,
     Color? color,
     TextDecoration? decoration,
@@ -16,7 +16,7 @@ class TextStyles {
       textStyle: Theme.of(context).textTheme.button!.copyWith(
             fontWeight: fontWeight,
             fontSize: fontSize ?? 12.sp,
-            color: color ?? ColorConstants.secondaryFontColor,
+            color: color ?? ColorConstants.secondaryAppColor,
             decoration: decoration,
           ),
     );
@@ -145,7 +145,7 @@ class TextStyles {
 
 extension TextStylesExtension on BuildContext {
   TextStyle getButtonTextStyle({
-    FontWeight fontWeight = FontWeight.w400,
+    FontWeight fontWeight = FontWeight.w700,
     double? fontSize,
     Color? color,
     TextDecoration? decoration,

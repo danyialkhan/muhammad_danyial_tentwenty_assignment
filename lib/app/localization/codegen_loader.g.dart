@@ -30,7 +30,9 @@ class CodegenLoader extends AssetLoader{
   "watch_trailer": "Watch Trailer",
   "genres": "Genres",
   "overview": "Overview",
-  "search": "Search"
+  "search": "Search",
+  "date": "Date",
+  "select_seats": "Select Seats"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en};
 }

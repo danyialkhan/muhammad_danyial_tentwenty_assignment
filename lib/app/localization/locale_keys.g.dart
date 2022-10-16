@@ -17,5 +17,7 @@ abstract class  LocaleKeys {
   static const genres = 'genres';
   static const overview = 'overview';
   static const search = 'search';
+  static const date = 'date';
+  static const select_seats = 'select_seats';
 
 }

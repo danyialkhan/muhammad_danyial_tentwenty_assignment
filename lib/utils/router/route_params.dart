@@ -9,3 +9,16 @@ class MovieDetailsScreenParams extends Equatable {
   @override
   List<Object?> get props => [movieID, routeFrom];
 }
+
+class BookingScreenParams extends Equatable {
+  final String movieName;
+  final String releaseDate;
+
+  const BookingScreenParams({
+    required this.movieName,
+    required this.releaseDate,
+  });
+
+  @override
+  List<Object?> get props => [movieName, releaseDate];
+}
