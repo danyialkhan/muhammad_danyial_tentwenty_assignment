@@ -14,6 +14,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/text_style
 import 'package:muhammad_danyial_tentwenty_assignment/utils/extensions/extensions.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/extensions/navigator_extensions.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/globals.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/utils/router/routes.dart';
 import 'package:shimmer/shimmer.dart';
 
 class MovieDetailsScreen extends StatelessWidget {
@@ -195,7 +196,9 @@ class _MovieDetailsScreenContentState extends State<MovieDetailsScreenContent> {
                                       ),
                                       SizedBox(height: 10.h),
                                       GestureDetector(
-                                        onTap: state.fetchingVideos ? null : () {},
+                                        onTap: state.fetchingVideos ? null : () {
+                                          context.pushNamed(route: movieVideosListScreenRoute, rootNavigator: true);
+                                        },
                                         child: Container(
                                           width: 243.w,
                                           height: 50.h,
