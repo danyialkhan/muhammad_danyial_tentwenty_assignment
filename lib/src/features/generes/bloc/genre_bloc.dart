@@ -72,6 +72,7 @@ class GenreBloc extends Bloc<GenreEvent, GenreState> {
         movies: [...response.results],
         totalPages: totalPages,
         currentPage: 1,
+        totalResults: response.totalResults,
       ));
     }
   }

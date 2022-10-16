@@ -46,6 +46,8 @@ class Genre extends Equatable {
         name: json["name"],
       );
 
+  factory Genre.empty() => const Genre(id: 0, name: '');
+
   @override
   List<Object?> get props => [id, name];
 }

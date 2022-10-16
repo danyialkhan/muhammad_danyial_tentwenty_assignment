@@ -48,6 +48,7 @@ class _GenreScreenContentState extends State<GenreScreenContent> {
           onTapClose: () => context.read<GenreBloc>().add(OnTapCrossEvent()),
           onChanged: (val) => context.read<GenreBloc>().add(OnSearchChangedEvent(query: val, fromPage: WatchTabRoutes.genreScreen)),
           controller: context.read<GenreBloc>().controller,
+          onSubmit: (val) {},
         ),
         body: Container(
           margin: EdgeInsets.symmetric(horizontal: 10.w, vertical: 20.h),

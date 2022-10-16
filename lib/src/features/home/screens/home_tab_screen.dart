@@ -10,6 +10,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/scree
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/home/bloc/bloc.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/home/bottom_tab_routes.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/screens/movie_list_screen.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/search_movies/screens/movie_search_result_screen.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/search_movies/screens/movie_search_screen.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/color_constants.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/text_styles.dart';
@@ -79,6 +80,7 @@ class _HomeTabScreenContentState extends State<HomeTabScreenContent> {
             routes: {
               WatchTabRoutes.genreScreen: (context) => const GenreScreen(),
               WatchTabRoutes.searchScreen: (context) => const MovieSearchScreen(),
+              WatchTabRoutes.movieSearchResultScreen: (context) => const MovieSearchResultScreen(),
             },
           )),
       PersistentBottomNavBarItem(

@@ -10,5 +10,6 @@ abstract class  LocaleKeys {
   static const results_not_found = 'results_not_found';
   static const tv_shows_movies_and_more = 'tv_shows_movies_and_more';
   static const top_results = 'top_results';
+  static const results_found = 'results_found';
 
 }

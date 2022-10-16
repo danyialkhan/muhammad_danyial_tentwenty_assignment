@@ -9,11 +9,13 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
   final void Function() onTapClose;
   final TextEditingController controller;
   final void Function(String) onChanged;
+  final void Function(String) onSubmit;
   const SearchAppBar({
     Key? key,
     required this.onTapClose,
     required this.controller,
     required this.onChanged,
+    required this.onSubmit,
   }) : super(key: key);
 
   @override
@@ -55,6 +57,7 @@ class SearchAppBar extends StatelessWidget implements PreferredSizeWidget {
           ),
           style: context.getBodyText2TextStyle(),
           onChanged: onChanged,
+          onSubmitted: onSubmit,
         ),
       ),
     );

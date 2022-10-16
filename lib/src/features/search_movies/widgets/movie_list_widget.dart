@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/usecases/get_generes.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/usecases/get_upcoming_movies_list.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/color_constants.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/text_styles.dart';
@@ -9,7 +10,21 @@ import 'package:muhammad_danyial_tentwenty_assignment/utils/globals.dart';
 
 class MovieListWidget extends StatelessWidget {
   final List<Movie> movies;
-  const MovieListWidget({Key? key, required this.movies}) : super(key: key);
+  final List<Genre> genres;
+  const MovieListWidget({
+    Key? key,
+    required this.movies,
+    required this.genres,
+  }) : super(key: key);
+
+  String _getGenre(Movie movie) {
+    if (movie.genreIds.isNotEmpty) {
+      final id = movie.genreIds.first;
+      final genre = genres.firstWhere((element) => element.id == id, orElse: () => Genre.empty());
+      return genre.name;
+    }
+    return '';
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -49,7 +64,8 @@ class MovieListWidget extends StatelessWidget {
                 SizedBox(width: 21.w),
                 Flexible(
                   child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       AutoSizeText(
                         movies[index].title,
@@ -60,6 +76,19 @@ class MovieListWidget extends StatelessWidget {
                           fontWeight: FontWeight.w500,
                         ),
                       ),
+                      if (movies[index].genreIds.isNotEmpty) ...[
+                        SizedBox(height: 8.h),
+                        AutoSizeText(
+                          _getGenre(movies[index]),
+                          maxFontSize: 12,
+                          minFontSize: 8,
+                          maxLines: 2,
+                          style: context.getButtonTextStyle(
+                            fontWeight: FontWeight.w500,
+                            color: ColorConstants.lightGreyFontColor,
+                          ),
+                        ),
+                      ],
                     ],
                   ),
                 )

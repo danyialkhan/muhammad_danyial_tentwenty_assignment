@@ -11,6 +11,7 @@ class GenreState {
   final String currentQuery;
   final int totalPages;
   final int currentPage;
+  final int totalResults;
 
   GenreState({
     required this.fetching,
@@ -23,6 +24,7 @@ class GenreState {
     required this.totalPages,
     required this.currentPage,
     required this.currentQuery,
+    required this.totalResults,
   });
 
   factory GenreState.initial() => GenreState(
@@ -35,6 +37,7 @@ class GenreState {
         currentScreen: WatchTabRoutes.genreScreen,
         totalPages: 1,
         currentPage: 1,
+        totalResults: 1,
         currentQuery: '',
       );
 
@@ -49,6 +52,7 @@ class GenreState {
     List<Movie>? movies,
     int? totalPages,
     int? currentPage,
+    int? totalResults,
   }) {
     return GenreState(
       genres: genres ?? this.genres,
@@ -61,6 +65,7 @@ class GenreState {
       totalPages: totalPages ?? this.totalPages,
       currentPage: currentPage ?? this.currentPage,
       currentQuery: currentQuery ?? this.currentQuery,
+      totalResults: totalResults ?? this.totalResults,
     );
   }
 }
@@ -78,6 +83,7 @@ class GoBackState extends GenreState {
           currentPage: state.currentPage,
           totalPages: state.totalPages,
           currentQuery: state.currentQuery,
+          totalResults: state.totalResults,
         );
 }
 
@@ -94,5 +100,6 @@ class GoToSearchScreenState extends GenreState {
           currentPage: state.currentPage,
           totalPages: state.totalPages,
           currentQuery: state.currentQuery,
+          totalResults: state.totalResults,
         );
 }

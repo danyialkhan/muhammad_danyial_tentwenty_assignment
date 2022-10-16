@@ -19,4 +19,5 @@ class ColorConstants {
   static Color pinkColor = const Color(0xFFE26CA5);
   static Color greenColor = const Color(0xFF15D2BC);
   static Color purpleColor = const Color(0xFF564CA3);
+  static Color lightGreyFontColor = const Color(0xFFDBDBDF);
 }
