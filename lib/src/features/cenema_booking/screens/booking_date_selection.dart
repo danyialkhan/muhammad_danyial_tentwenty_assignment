@@ -2,6 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/app/localization/locale_keys.g.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/cenema_booking/widgets/seat_selection_widget.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/common_widgets/booking_screen_appbar.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/color_constants.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/text_styles.dart';
@@ -96,7 +97,7 @@ class _BookingDateSelectionScreenState extends State<BookingDateSelectionScreen>
                 ),
                 SliverToBoxAdapter(
                   child: Container(
-                    height: 0.3.sh,
+                    height: 0.35.sh,
                     margin: EdgeInsets.symmetric(horizontal: 21.w),
                     child: ListView.builder(
                       shrinkWrap: true,
@@ -125,13 +126,11 @@ class _BookingDateSelectionScreenState extends State<BookingDateSelectionScreen>
                               ),
                             ),
                             Container(
-                              height: 0.2.sh,
+                              height: 0.25.sh,
                               margin: EdgeInsets.only(right: 12.w),
+                              padding: EdgeInsets.all(10.h),
                               decoration: BoxDecoration(borderRadius: BorderRadius.circular(10.r), border: Border.all(color: ColorConstants.buttonColor, width: 1)),
-                              child: Container(
-                                margin: EdgeInsets.symmetric(horizontal: 0.3.sw),
-                                child: const Icon(Icons.ac_unit),
-                              ),
+                              child: const SeatsWidget(),
                             ),
                             SizedBox(height: 15.h),
                             Text.rich(
@@ -146,7 +145,7 @@ class _BookingDateSelectionScreenState extends State<BookingDateSelectionScreen>
                                   ),
                                   const TextSpan(text: ' '),
                                   TextSpan(
-                                    text: '50\$',
+                                    text: '50\$ ',
                                     style: context.getButtonTextStyle(
                                       color: ColorConstants.secondaryAppColor,
                                     ),

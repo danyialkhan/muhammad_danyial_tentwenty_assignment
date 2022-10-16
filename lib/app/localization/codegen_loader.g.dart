@@ -32,7 +32,14 @@ class CodegenLoader extends AssetLoader{
   "overview": "Overview",
   "search": "Search",
   "date": "Date",
-  "select_seats": "Select Seats"
+  "select_seats": "Select Seats",
+  "screen": "Screen",
+  "selected": "Selected",
+  "not_available": "Not available",
+  "vip": "VIP ({})",
+  "regular": "Regular ({})",
+  "proceed_to_pay": "Proceed to pay",
+  "total_price": "Total Price"
 };
 static const Map<String, Map<String,dynamic>> mapLocales = {"en": en};
 }

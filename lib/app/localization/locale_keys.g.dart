@@ -19,5 +19,12 @@ abstract class  LocaleKeys {
   static const search = 'search';
   static const date = 'date';
   static const select_seats = 'select_seats';
+  static const screen = 'screen';
+  static const selected = 'selected';
+  static const not_available = 'not_available';
+  static const vip = 'vip';
+  static const regular = 'regular';
+  static const proceed_to_pay = 'proceed_to_pay';
+  static const total_price = 'total_price';
 
 }

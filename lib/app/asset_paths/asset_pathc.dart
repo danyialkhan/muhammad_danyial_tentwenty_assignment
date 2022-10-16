@@ -4,4 +4,5 @@ class AssetPaths {
   static String moreIconPath = 'assets/svgs/more_icon.svg';
   static String watchIconPath = 'assets/svgs/watch_icon.svg';
   static String seatPath = 'assets/svgs/Seat.svg';
+  static String arcPath = 'assets/svgs/arc.svg';
 }
