@@ -13,6 +13,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/src/features/home/bloc/blo
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/bloc/movie_detail_bloc.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_details.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_images.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_videos.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/bloc/upcomming_movies_bloc.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/usecases/get_upcoming_movies_list.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/search_movies/usecases/search_movie.dart';
@@ -60,7 +61,11 @@ void registerBlocs() {
   sl.registerLazySingleton<HomeTabBloc>(() => HomeTabBloc());
   sl.registerLazySingleton<UpComingMoviesBloc>(() => UpComingMoviesBloc(getUpComingMoviesList: sl()));
   sl.registerLazySingleton<GenreBloc>(() => GenreBloc(getMovieGenre: sl(), searchMovies: sl()));
-  sl.registerLazySingleton<MovieDetailsBloc>(() => MovieDetailsBloc(getMovieDetails: sl(), getMovieImages: sl()));
+  sl.registerLazySingleton<MovieDetailsBloc>(() => MovieDetailsBloc(
+        getMovieDetails: sl(),
+        getMovieImages: sl(),
+        getMovieVideos: sl(),
+      ));
 }
 
 void registerUseCases() {
@@ -69,6 +74,7 @@ void registerUseCases() {
   sl.registerLazySingleton<GetMovieGenre>(() => GetMovieGenre(sl()));
   sl.registerLazySingleton<SearchMovies>(() => SearchMovies(sl()));
   sl.registerLazySingleton<GetMovieImages>(() => GetMovieImages(sl()));
+  sl.registerLazySingleton<GetMovieVideos>(() => GetMovieVideos(sl()));
 }
 
 class ShowAllLogsFilter extends LogFilter {

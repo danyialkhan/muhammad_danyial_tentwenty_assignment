@@ -6,6 +6,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/services/datasources/remot
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/usecases/get_generes.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_details.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_images.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_videos.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/usecases/get_upcoming_movies_list.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/search_movies/usecases/search_movie.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/string%20constants.dart';
@@ -105,6 +106,23 @@ class RemoteDataSourceImpl extends RemoteDataSource {
 
     if (response.data != null) {
       return MovieImages.fromJson(response.data);
+    }
+
+    throw AppStrings.SOMETHING_WENT_WRONG.tr();
+  }
+
+  @override
+  Future<MovieVideos> getMovieVideos(int params) async {
+    final queryParams = {
+      'api_key': apiKey,
+    };
+
+    final response = await _dio.onGet(api: '${APIPaths.onGetMovieDetails}$params/videos', queryParameters: queryParams);
+
+    _logger.i("[RemoteDataSourceImpl | getMovieVideos] :: $response");
+
+    if (response.data != null) {
+      return MovieVideos.fromJson(response.data);
     }
 
     throw AppStrings.SOMETHING_WENT_WRONG.tr();

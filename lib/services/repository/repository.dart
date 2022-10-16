@@ -3,6 +3,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/services/errors/failures.d
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/usecases/get_generes.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_details.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_images.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/use_cases/get_movie_videos.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_list/usecases/get_upcoming_movies_list.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/search_movies/usecases/search_movie.dart';
 
@@ -35,4 +36,10 @@ abstract class Repository {
   /// Output: If successful returns [MovieImages] contains list of [Backdrop].
   /// If unsuccessful returns [Failure]
   Future<Either<Failure, MovieImages>> getMovieImages(int params);
+
+  /// This method will gets all videos of the movie
+  /// Input: [params] movie id.
+  /// Output: If successful returns [MovieVideos] contains list of [MovieVideo].
+  /// If unsuccessful returns [Failure]
+  Future<Either<Failure, MovieVideos>> getMovieVideos(int params);
 }

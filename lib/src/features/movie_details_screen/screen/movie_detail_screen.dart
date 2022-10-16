@@ -11,6 +11,7 @@ import 'package:muhammad_danyial_tentwenty_assignment/src/features/generes/useca
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/movie_details_screen/bloc/movie_detail_bloc.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/color_constants.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/constants/text_styles.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/utils/extensions/extensions.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/extensions/navigator_extensions.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/globals.dart';
 import 'package:shimmer/shimmer.dart';
@@ -150,11 +151,16 @@ class _MovieDetailsScreenContentState extends State<MovieDetailsScreenContent> {
                             right: 0,
                             child: Column(
                               children: [
-                                Text(
-                                  LocaleKeys.in_theaters_date.tr(args: [(state.movieDetails.releaseDate)]),
-                                  style: context.getSubtitleTextStyle(
-                                    color: ColorConstants.primaryAppColor,
-                                    fontWeight: FontWeight.w500,
+                                Container(
+                                  decoration: BoxDecoration(
+                                    color: ColorConstants.secondaryAppColor.withOpacity(0.4),
+                                  ),
+                                  child: Text(
+                                    LocaleKeys.in_theaters_date.tr(args: [(state.movieDetails.releaseDate.getFormattedDate())]),
+                                    style: context.getSubtitleTextStyle(
+                                      color: ColorConstants.primaryAppColor,
+                                      fontWeight: FontWeight.w500,
+                                    ),
                                   ),
                                 ),
                                 SizedBox(height: 10.h),

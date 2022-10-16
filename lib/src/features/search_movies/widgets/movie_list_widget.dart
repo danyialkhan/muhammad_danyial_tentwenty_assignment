@@ -67,7 +67,8 @@ class MovieListWidget extends StatelessWidget {
                   ),
                 ),
                 SizedBox(width: 21.w),
-                Flexible(
+                Expanded(
+                  flex: 2,
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.start,
                     crossAxisAlignment: CrossAxisAlignment.start,
@@ -108,7 +109,14 @@ class MovieListWidget extends StatelessWidget {
                       ],
                     ],
                   ),
-                )
+                ),
+                Align(
+                  alignment: Alignment.centerRight,
+                  child: Icon(
+                    Icons.more_horiz,
+                    color: ColorConstants.buttonColor,
+                  ),
+                ),
               ],
             ),
           );

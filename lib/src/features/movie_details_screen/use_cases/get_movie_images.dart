@@ -35,6 +35,12 @@ class MovieImages extends Equatable {
         posters: List<Backdrop>.from(json["posters"].map((x) => Backdrop.fromJson(x))),
       );
 
+  factory MovieImages.empty() => const MovieImages(
+        id: 0,
+        backdrops: [],
+        posters: [],
+      );
+
   @override
   List<Object?> get props => [id, backdrops, posters];
 }

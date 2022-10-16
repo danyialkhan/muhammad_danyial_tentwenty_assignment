@@ -303,6 +303,13 @@
             </list>
           </value>
         </entry>
+        <entry key="flutter_inappwebview">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../flutter_3.3/.pub-cache/hosted/pub.dartlang.org/flutter_inappwebview-5.5.0+2/lib" />
+            </list>
+          </value>
+        </entry>
         <entry key="flutter_lints">
           <value>
             <list>
@@ -884,6 +891,13 @@
             </list>
           </value>
         </entry>
+        <entry key="youtube_player_flutter">
+          <value>
+            <list>
+              <option value="$PROJECT_DIR$/../../flutter_3.3/.pub-cache/hosted/pub.dartlang.org/youtube_player_flutter-8.1.1/lib" />
+            </list>
+          </value>
+        </entry>
       </option>
     </properties>
     <CLASSES>
@@ -929,6 +943,7 @@
       <root url="file://$PROJECT_DIR$/../../flutter_3.3/.pub-cache/hosted/pub.dartlang.org/flutter_blurhash-0.7.0/lib" />
       <root url="file://$PROJECT_DIR$/../../flutter_3.3/.pub-cache/hosted/pub.dartlang.org/flutter_cache_manager-3.3.0/lib" />
       <root url="file://$PROJECT_DIR$/../../flutter_3.3/.pub-cache/hosted/pub.dartlang.org/flutter_dotenv-5.0.2/lib" />
+      <root url="file://$PROJECT_DIR$/../../flutter_3.3/.pub-cache/hosted/pub.dartlang.org/flutter_inappwebview-5.5.0+2/lib" />
       <root url="file://$PROJECT_DIR$/../../flutter_3.3/.pub-cache/hosted/pub.dartlang.org/flutter_lints-2.0.1/lib" />
       <root url="file://$PROJECT_DIR$/../../flutter_3.3/.pub-cache/hosted/pub.dartlang.org/flutter_screenutil-5.5.4/lib" />
       <root url="file://$PROJECT_DIR$/../../flutter_3.3/.pub-cache/hosted/pub.dartlang.org/flutter_svg-1.1.5/lib" />
@@ -1008,6 +1023,7 @@
       <root url="file://$PROJECT_DIR$/../../flutter_3.3/.pub-cache/hosted/pub.dartlang.org/xdg_directories-0.2.0+2/lib" />
       <root url="file://$PROJECT_DIR$/../../flutter_3.3/.pub-cache/hosted/pub.dartlang.org/xml-6.1.0/lib" />
       <root url="file://$PROJECT_DIR$/../../flutter_3.3/.pub-cache/hosted/pub.dartlang.org/yaml-3.1.1/lib" />
+      <root url="file://$PROJECT_DIR$/../../flutter_3.3/.pub-cache/hosted/pub.dartlang.org/youtube_player_flutter-8.1.1/lib" />
       <root url="file://$PROJECT_DIR$/../../flutter_3.3/bin/cache/pkg/sky_engine/lib" />
       <root url="file://$PROJECT_DIR$/../../flutter_3.3/packages/flutter/lib" />
       <root url="file://$PROJECT_DIR$/../../flutter_3.3/packages/flutter_localizations/lib" />
