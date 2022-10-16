@@ -1,6 +1,7 @@
 import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/app/localization/locale_keys.g.dart';
+import 'package:muhammad_danyial_tentwenty_assignment/src/features/cenema_booking/widgets/seat_selection_widget.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/src/features/common_widgets/booking_screen_appbar.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/extensions/extensions.dart';
 import 'package:muhammad_danyial_tentwenty_assignment/utils/extensions/navigator_extensions.dart';
@@ -27,6 +28,11 @@ class _SelectScreenState extends State<SelectScreen> {
           movieName: widget.movieName,
           releaseDate: LocaleKeys.in_theaters_date.tr(args: [widget.releaseDate.getFormattedDate()]),
           onBackPress: () => context.pop(),
+        ),
+        body: Column(
+          children: const [
+            SeatSelectionWidget(),
+          ],
         ),
       ),
     );
