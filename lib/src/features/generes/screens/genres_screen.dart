@@ -46,7 +46,7 @@ class _GenreScreenContentState extends State<GenreScreenContent> {
       child: Scaffold(
         appBar: SearchAppBar(
           onTapClose: () => context.read<GenreBloc>().add(OnTapCrossEvent()),
-          onChanged: (val) => context.read<GenreBloc>().add(OnSearchChangedEvent(val)),
+          onChanged: (val) => context.read<GenreBloc>().add(OnSearchChangedEvent(query: val, fromPage: WatchTabRoutes.genreScreen)),
           controller: context.read<GenreBloc>().controller,
         ),
         body: Container(

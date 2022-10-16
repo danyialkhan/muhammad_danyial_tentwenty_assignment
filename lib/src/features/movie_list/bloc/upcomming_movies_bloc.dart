@@ -21,9 +21,6 @@ class UpComingMoviesBloc extends Bloc<UpComingMoviesEvent, UpComingMoviesState> 
   }
 
   FutureOr<void> _onGetUpComingMovies(GetUpComingMoviesEvent event, Emitter<UpComingMoviesState> emit) async {
-    if(state.currentPage > state.totalPages) {
-      return;
-    }
     emit(state.copyWith(fetching: true, failureEither: right(unit)));
     GetUpComingMoviesListParams params = GetUpComingMoviesListParams(
       page: state.currentPage,
@@ -42,7 +39,7 @@ class UpComingMoviesBloc extends Bloc<UpComingMoviesEvent, UpComingMoviesState> 
     state.results.addAll(response.results);
     final totalPages = response.totalPages;
     final results = [...state.results];
-    final currentPage = state. currentPage + 1;
+    final currentPage = state.currentPage + 1;
 
     emit(state.copyWith(
       fetching: false,
@@ -55,7 +52,7 @@ class UpComingMoviesBloc extends Bloc<UpComingMoviesEvent, UpComingMoviesState> 
   }
 
   FutureOr<void> _onGetNextPage(GetNextUpComingMoviesPageEvent event, Emitter<UpComingMoviesState> emit) async {
-    if(state.currentPage > state.totalPages) {
+    if (state.currentPage > state.totalPages) {
       return;
     }
     emit(state.copyWith(fetchingNextPage: true, failureEither: right(unit)));
@@ -76,7 +73,7 @@ class UpComingMoviesBloc extends Bloc<UpComingMoviesEvent, UpComingMoviesState> 
     state.results.addAll(response.results);
     final totalPages = response.totalPages;
     final results = [...state.results];
-    final currentPage = state. currentPage + 1;
+    final currentPage = state.currentPage + 1;
 
     emit(state.copyWith(
       fetching: false,

@@ -78,7 +78,8 @@ class RemoteDataSourceImpl extends RemoteDataSource {
   Future<MoviesList> searchMovie(SearchMoviesParams params) async {
     final queryParams = {
       'api_key': apiKey,
-      'query': params.query
+      'query': params.query,
+      'page': params.page,
     };
 
     final response = await _dio.onGet(api: APIPaths.onSearchMovie, queryParameters: queryParams);

@@ -27,11 +27,13 @@ class GenreBloc extends Bloc<GenreEvent, GenreState> {
     on<OnSearchChangedEvent>(_onSearchChangedEvent);
     on<OnTapCrossEvent>(_onTapCross);
     on<SetCurrentRouteEvent>((event, emit) => emit(state.copyWith(currentScreen: event.route)));
+    on<GetNextSearchPageEvent>(_onGetNextSearchPage);
   }
 
   TextEditingController controller = TextEditingController();
 
   FutureOr<void> _onGetAllGenres(GetAllGenresEvent event, Emitter<GenreState> emit) async {
+    if(state.fetching) return;
     emit(state.copyWith(fetching: true, failureEither: right(unit)));
 
     final resultEither = await _getMovieGenre(NoParams());
@@ -48,25 +50,66 @@ class GenreBloc extends Bloc<GenreEvent, GenreState> {
   }
 
   FutureOr<void> _onSearchChangedEvent(OnSearchChangedEvent event, Emitter<GenreState> emit) async {
-    emit(GoToSearchScreenState(state: state.copyWith(searchingMovies: true, failureEither: right(unit))));
-    final resultEither = await _searchMovies.call(SearchMoviesParams(event.query));
+    emit(GoToSearchScreenState(state: state.copyWith(searchingMovies: true, failureEither: right(unit), currentQuery: event.query)));
+    if(event.fromPage == WatchTabRoutes.searchScreen) {
+      final resultEither = await _searchMovies.call(SearchMoviesParams(query: state.currentQuery, page: 1));
 
-    if (resultEither.isLeft()) {
-      final failure = handleFailure(resultEither);
-      if(failure is! SearchResultsNotFound) {
-        SnackbarHelper.show(message: failure.message);
+      if (resultEither.isLeft()) {
+        final failure = handleFailure(resultEither);
+        if (failure is! SearchResultsNotFound) {
+          SnackbarHelper.show(message: failure.message);
+        }
+        emit(state.copyWith(searchingMovies: false, failureEither: left(failure), movies: []));
+        return;
       }
-      emit(state.copyWith(searchingMovies: false, failureEither: left(failure)));
-      return;
+
+      final response = resultEither.getOrElse(() => MoviesList.empty());
+      final totalPages = response.totalPages;
+
+      emit(state.copyWith(
+        searchingMovies: true,
+        failureEither: right(unit),
+        movies: [...response.results],
+        totalPages: totalPages,
+        currentPage: 1,
+      ));
     }
-
-    final response = resultEither.getOrElse(() => MoviesList.empty());
-
-    emit(state.copyWith(searchingMovies: true, failureEither: right(unit), movies: [...response.results]));
   }
 
   FutureOr<void> _onTapCross(OnTapCrossEvent event, Emitter<GenreState> emit) async {
     controller.clear();
     emit(GoBackState(state: state.copyWith(movies: [])));
+  }
+
+  FutureOr<void> _onGetNextSearchPage(GetNextSearchPageEvent event, Emitter<GenreState> emit) async {
+    print('CURRENT PAGE: ${state.currentPage}');
+    if (state.currentPage > state.totalPages || state.searchingMoviesNextPage) {
+      return;
+    }
+    emit(state.copyWith(searchingMoviesNextPage: true, failureEither: right(unit)));
+    final resultEither = await _searchMovies.call(SearchMoviesParams(query: state.currentQuery, page: state.currentPage + 1));
+
+    if (resultEither.isLeft()) {
+      final failure = handleFailure(resultEither);
+      if (failure is! SearchResultsNotFound) {
+        SnackbarHelper.show(message: failure.message);
+      }
+      emit(state.copyWith(searchingMoviesNextPage: false, failureEither: left(failure)));
+      return;
+    }
+
+    final response = resultEither.getOrElse(() => MoviesList.empty());
+    state.movies.addAll(response.results);
+    final currentPage = state.currentPage + 1;
+    final totalPages = response.totalPages;
+    print('CURRENT PAGE INCREMENT: ${state.currentPage}');
+
+    emit(state.copyWith(
+      searchingMoviesNextPage: false,
+      failureEither: right(unit),
+      movies: [...state.movies],
+      totalPages: totalPages,
+      currentPage: currentPage,
+    ));
   }
 }

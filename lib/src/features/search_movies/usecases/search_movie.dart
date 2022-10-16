@@ -21,8 +21,9 @@ class SearchMovies extends UseCase<MoviesList, SearchMoviesParams> {
 
 class SearchMoviesParams extends Equatable {
   final String query;
-  const SearchMoviesParams(this.query);
+  final int page;
+  const SearchMoviesParams({required this.query, required this.page});
 
   @override
-  List<Object?> get props => [query];
+  List<Object?> get props => [query, page];
 }
