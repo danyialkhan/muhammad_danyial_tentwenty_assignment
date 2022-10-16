@@ -23,20 +23,14 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
         _getMovieVideos = getMovieVideos,
         super(MovieDetailsState.initial()) {
     on<GetMovieDetailsEvent>(_onGetMovieDataEvent);
+    on<GetMovieVideosEvent>(_onGetMovieVideosEvent);
+    on<GetMovieImagesEvent>(_onGetMovieImagesEvent);
   }
 
   FutureOr<void> _onGetMovieDataEvent(GetMovieDetailsEvent event, Emitter<MovieDetailsState> emit) async {
-    Future.microtask(() async {
-      await _onGetMovieDetails(emit, event.id);
-      await _onGetMovieVideos(emit, event.id);
-      await _onGetMovieImages(emit, event.id);
-    });
-  }
-
-  Future<void> _onGetMovieDetails(Emitter<MovieDetailsState> emit, int movieId) async {
     emit(state.copyWith(fetching: true, failureEither: right(unit)));
 
-    final resultEither = await _getMovieDetails(GetMovieDetailsParams(movieId));
+    final resultEither = await _getMovieDetails(GetMovieDetailsParams(event.id));
 
     if (resultEither.isLeft()) {
       final failure = handleFailure(resultEither);
@@ -48,10 +42,10 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
     emit(state.copyWith(fetching: false, movieDetails: response));
   }
 
-  Future<void> _onGetMovieVideos(Emitter<MovieDetailsState> emit, int movieId) async {
+  FutureOr<void> _onGetMovieVideosEvent(GetMovieVideosEvent event, Emitter<MovieDetailsState> emit) async {
     emit(state.copyWith(fetchingVideos: true, getMovieVideosFailureEither: right(unit)));
 
-    final resultEither = await _getMovieVideos(movieId);
+    final resultEither = await _getMovieVideos(event.id);
 
     if (resultEither.isLeft()) {
       final failure = handleFailure(resultEither);
@@ -63,10 +57,10 @@ class MovieDetailsBloc extends Bloc<MovieDetailsEvent, MovieDetailsState> {
     emit(state.copyWith(fetchingVideos: false, movieVideos: response));
   }
 
-  Future<void> _onGetMovieImages(Emitter<MovieDetailsState> emit, int movieId) async {
+  FutureOr<void> _onGetMovieImagesEvent(GetMovieImagesEvent event, Emitter<MovieDetailsState> emit) async {
     emit(state.copyWith(fetchingImages: true, getMovieImagesFailureEither: right(unit)));
 
-    final resultEither = await _getMovieImages(movieId);
+    final resultEither = await _getMovieImages(event.id);
 
     if (resultEither.isLeft()) {
       final failure = handleFailure(resultEither);

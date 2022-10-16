@@ -7,3 +7,15 @@ class GetMovieDetailsEvent extends MovieDetailsEvent {
 
   GetMovieDetailsEvent(this.id);
 }
+
+class GetMovieVideosEvent extends MovieDetailsEvent {
+  final int id;
+
+  GetMovieVideosEvent(this.id);
+}
+
+class GetMovieImagesEvent extends MovieDetailsEvent {
+  final int id;
+
+  GetMovieImagesEvent(this.id);
+}

@@ -31,8 +31,8 @@ class MovieImages extends Equatable {
 
   factory MovieImages.fromJson(Map<String, dynamic> json) => MovieImages(
         id: json["id"],
-        backdrops: List<Backdrop>.from(json["backdrops"].map((x) => Backdrop.fromJson(x))),
-        posters: List<Backdrop>.from(json["posters"].map((x) => Backdrop.fromJson(x))),
+        backdrops: json["backdrops"] == null ? [] : List<Backdrop>.from(json["backdrops"].map((x) => Backdrop.fromJson(x))),
+        posters: json["posters"] == null ? [] : List<Backdrop>.from(json["posters"].map((x) => Backdrop.fromJson(x))),
       );
 
   factory MovieImages.empty() => const MovieImages(
