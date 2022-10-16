@@ -62,7 +62,7 @@ class _MovieListScreenContentState extends State<MovieListScreenContent> {
           builder: (context, state) {
             return Container(
               margin: EdgeInsets.symmetric(vertical: 10.h, horizontal: 20.w),
-              child: state.fetching
+              child: (state.fetching)
                   ? Shimmer.fromColors(
                       baseColor: Colors.grey[300]!,
                       highlightColor: Colors.grey[100]!,
@@ -80,64 +80,78 @@ class _MovieListScreenContentState extends State<MovieListScreenContent> {
                         },
                       ),
                     )
-                  : state.results.isEmpty
-                      ? Center(
-                          child: Column(
-                            children: [
-                              const Icon(Icons.hourglass_empty),
-                              Text(LocaleKeys.results_not_found.tr()),
-                            ],
-                          ),
-                        )
-                      : ListView.builder(
-                          controller: scrollController,
-                          shrinkWrap: true,
-                          itemBuilder: (_, index) {
-                            return Card(
-                              elevation: 1.0,
-                              margin: EdgeInsets.only(bottom: 10.h),
-                              shape: RoundedRectangleBorder(
-                                borderRadius: BorderRadius.circular(16),
-                              ),
-                              child: Stack(
-                                children: [
-                                  SizedBox(
-                                    height: 0.3.sh,
-                                    child: CachedNetworkImage(
-                                      imageUrl: '${imageUrl}w1280${state.results[index].backdropPath}',
-                                      progressIndicatorBuilder: (context, url, downloadProgress) => Center(
-                                        child: CircularProgressIndicator(
-                                          value: downloadProgress.progress,
-                                          color: ColorConstants.primaryAppColor,
-                                        ),
-                                      ),
-                                      errorWidget: (context, url, error) => const Icon(Icons.image),
-                                      fit: BoxFit.cover,
-                                    ),
+                  : CustomScrollView(
+                      controller: scrollController,
+                      slivers: [
+                        state.results.isEmpty
+                            ? SliverToBoxAdapter(
+                                child: Center(
+                                  child: Column(
+                                    children: [
+                                      const Icon(Icons.hourglass_empty),
+                                      Text(LocaleKeys.results_not_found.tr()),
+                                    ],
                                   ),
-                                  Positioned(
-                                    bottom: 20.h,
-                                    left: 10.w,
-                                    child: Container(
-                                      padding: EdgeInsets.all(5.h),
-                                      decoration: BoxDecoration(color: ColorConstants.secondaryAppColor.withOpacity(0.4)),
-                                      child: AutoSizeText(
-                                        state.results[index].title,
-                                        maxLines: 2,
-                                        maxFontSize: 18,
-                                        style: context.getBodyText1TextStyle(
-                                          fontWeight: FontWeight.w500,
-                                          color: ColorConstants.primaryAppColor,
-                                        ),
-                                      ),
+                                ),
+                              )
+                            : SliverList(
+                                delegate: SliverChildBuilderDelegate((_, index) {
+                                  return Card(
+                                    elevation: 1.0,
+                                    margin: EdgeInsets.only(bottom: 10.h),
+                                    shape: RoundedRectangleBorder(
+                                      borderRadius: BorderRadius.circular(16),
                                     ),
-                                  ),
-                                ],
+                                    child: Stack(
+                                      children: [
+                                        SizedBox(
+                                          height: 0.3.sh,
+                                          child: CachedNetworkImage(
+                                            imageUrl: '${imageUrl}w1280${state.results[index].backdropPath}',
+                                            progressIndicatorBuilder: (context, url, downloadProgress) => Center(
+                                              child: CircularProgressIndicator(
+                                                value: downloadProgress.progress,
+                                                color: ColorConstants.primaryAppColor,
+                                              ),
+                                            ),
+                                            errorWidget: (context, url, error) => const Icon(Icons.image),
+                                            fit: BoxFit.cover,
+                                          ),
+                                        ),
+                                        Positioned(
+                                          bottom: 20.h,
+                                          left: 10.w,
+                                          child: Container(
+                                            padding: EdgeInsets.all(5.h),
+                                            decoration: BoxDecoration(color: ColorConstants.secondaryAppColor.withOpacity(0.4)),
+                                            child: AutoSizeText(
+                                              state.results[index].title,
+                                              maxLines: 2,
+                                              maxFontSize: 18,
+                                              style: context.getBodyText1TextStyle(
+                                                fontWeight: FontWeight.w500,
+                                                color: ColorConstants.primaryAppColor,
+                                              ),
+                                            ),
+                                          ),
+                                        ),
+                                      ],
+                                    ),
+                                  );
+                                }, childCount: state.results.length),
                               ),
-                            );
-                          },
-                          itemCount: state.results.length,
-                        ),
+                        if (state.fetchingNextPage)
+                          SliverToBoxAdapter(
+                            child: Container(
+                              margin: EdgeInsets.all(10.h),
+                              alignment: Alignment.center,
+                              child: CircularProgressIndicator(
+                                color: ColorConstants.secondaryAppColor,
+                              ),
+                            ),
+                          )
+                      ],
+                    ),
             );
           },
         ),
